@@ -1,0 +1,31 @@
+<p-panel header="{{'Student-title' | translate}}">
+	<div class="">
+		<p-button label="{{'Student-Add' | translate}}" icon="pi pi-plus" (onClick)="addStudent($event)" iconPos="right"> </p-button>
+	</div>
+	<br>
+	<p-table #dt [globalFilterFields]="['Name','LastName','Gender']" [value]="students" [paginator]="true" [rows]="10">
+		<ng-template pTemplate="caption">
+			<div style="text-align: right">
+				<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+				<input type="text" pInputText size="50" placeholder="{{'GlobalFilterPlaceHolder' | translate}}"
+					(input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 10%">{{'Student-Id' | translate}} </th>
+				<th style="width: 30%">{{'Student-Name' | translate}}</th>
+				<th style="width: 30%">{{'Student-BirthDate' | translate}}</th>
+				<th style="width: 30%">{{'Student-Gender' | translate}}</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-student>
+			<tr>
+				<td>{{student.Id}}</td>
+				<td>{{student.Name + ' ' + student.LastName}}</td>
+				<td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
+				<td>{{student.Gender}}</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</p-panel>

@@ -12,6 +12,15 @@
     "Password-placeholder": "Intruduce Contraseña",
     "Forgot-password": "Olvidaste la contraseña?",
     "Footer-login": "2020 @ Papito Systems. Hecho con ",
+    "Footer": "2020 @ Papito Systems. Hecho con ",
     "User-Id": "Usuario",
-    "User-Name": "Nombre"
+    "User-Name": "Nombre",
+    "Student-Id": "Id",
+    "Student-title": "Alumnos",
+    "Student-Name": "Nombre",
+    "Student-BirthDate": "Fecha Nacimiento",
+    "Student-Gender":"Genero",
+    "GlobalFilterPlaceHolder": "Buscar",
+    "Student-Add": "Agregar Alumno"
+
 }
