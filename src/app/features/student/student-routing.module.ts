@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StudentComponent } from 'src/app/features/student/student.component';
+import { StudentListComponent } from 'src/app/features/student/student-list/student-list.component'
+import { StudentDetailComponent } from 'src/app/features/student/student-detail/student-detail.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: StudentComponent
+        redirectTo: 'student-list', 
+        pathMatch: 'full'
+    },
+    {
+        path: 'student-list',
+        component: StudentListComponent
+    },
+    {
+        path: 'student-detail',
+        component: StudentDetailComponent
     }
 ];
 

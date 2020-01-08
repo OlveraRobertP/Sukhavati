@@ -15,7 +15,8 @@ const routes: Routes = [
     {
         path: 'department-detail',
         component: DepartmentComponent,
-        loadChildren: () => import('src/app/features/department/department-detail/department-detail.module').then(m => m.DepartmentDetailModule)
+        loadChildren: () => import('src/app/features/department/department-detail/department-detail.module').
+        then(m => m.DepartmentDetailModule)
     }
 ];
 

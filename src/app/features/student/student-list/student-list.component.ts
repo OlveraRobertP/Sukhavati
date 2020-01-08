@@ -6,11 +6,11 @@ import { Student } from 'src/app/core/models/student.model';
 
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+  selector: 'app-student-list',
+  templateUrl: './student-list.component.html',
+  styleUrls: ['./student-list.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentListComponent implements OnInit {
   columns: any[];
 
   students: Student[];
@@ -32,12 +32,12 @@ export class StudentComponent implements OnInit {
     this.students = this.studentService.getStudentList();
   }
 
-  goToDepartmentDetails(department: number) {
-    this.routeStateService.add("Department details", "/main/departments/department-detail", department, false);
+  goToStudentDetails(student) {
+    this.routeStateService.add("Student details", "/main/students/student-detail", student, false);
   }
 
   addStudent() {
-    this.routeStateService.add("Student details", "/main/student/student-detail", null, false);
+    this.routeStateService.add("Student details", "/main/students/student-detail", null, false);
   }
 
 }

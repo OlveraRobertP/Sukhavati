@@ -23,14 +23,14 @@ export class MenuDataService {
             // {
             //     Label: 'Employees', Icon: 'fa-users', RouterLink: '/main/employees', Childs: null, IsChildVisible: false
             // },
-            // {
-            //     Label: 'Departments', Icon: 'fa-sitemap', RouterLink: '/main/departments', Childs: null, IsChildVisible: false
-            // },
             {
-                Label: 'AboutUs', Icon: 'fa-info-circle', RouterLink: '/main/aboutus', Childs: null, IsChildVisible: false
+                Label: 'Pagos', Icon: 'fa-sitemap', RouterLink: '/main/departments', Childs: null, IsChildVisible: false
             },
             {
-                Label: 'ContactUs', Icon: 'fa-envelope', RouterLink: '/main/contactus', Childs: null, IsChildVisible: false
+                Label: 'Asistencias', Icon: 'fa-info-circle', RouterLink: '/main/aboutus', Childs: null, IsChildVisible: false
+            },
+            {
+                Label: 'Reportes', Icon: 'fa-envelope', RouterLink: '/main/contactus', Childs: null, IsChildVisible: false
             },
             // {
             //     Label: 'Error 404', Icon: 'fa-exclamation-triangle', RouterLink: '/error', Childs: null, IsChildVisible: false

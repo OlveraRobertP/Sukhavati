@@ -1,8 +1,12 @@
-<p-panel header="{{'Student-title' | translate}}">
-	<div class="">
-		<p-button label="{{'Student-Add' | translate}}" icon="pi pi-plus" (onClick)="addStudent($event)" iconPos="right"> </p-button>
-	</div>
-	<br>
+<p-panel >
+	<p-header>
+        <div >
+            <span class="ui-panel-title" >{{'Student-title' | translate}}</span>
+			<p-button class="float-rigth" label="{{'Student-Add' | translate}}" 
+			icon="pi pi-plus" (onClick)="addStudent($event)" 
+			iconPos="right"> </p-button>
+        </div>
+    </p-header>
 	<p-table #dt [globalFilterFields]="['Name','LastName','Gender']" [value]="students" [paginator]="true" [rows]="10">
 		<ng-template pTemplate="caption">
 			<div style="text-align: right">
@@ -21,7 +25,7 @@
 		</ng-template>
 		<ng-template pTemplate="body" let-student>
 			<tr>
-				<td>{{student.Id}}</td>
+				<td style="text-align: center" ><a (click)="goToStudentDetails(student)">{{student.Id}}</a></td>
 				<td>{{student.Name + ' ' + student.LastName}}</td>
 				<td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
 				<td>{{student.Gender}}</td>

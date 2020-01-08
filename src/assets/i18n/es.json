@@ -18,9 +18,13 @@
     "Student-Id": "Id",
     "Student-title": "Alumnos",
     "Student-Name": "Nombre",
+    "Student-LastName": "Apeidos",
     "Student-BirthDate": "Fecha Nacimiento",
     "Student-Gender":"Genero",
     "GlobalFilterPlaceHolder": "Buscar",
-    "Student-Add": "Agregar Alumno"
+    "Student-Add": "Agregar Alumno",
+    "Back":"Regresar",
+    "Success": "Correcto !",
+    "Success-Save": "Guardado correcto"
 
 }

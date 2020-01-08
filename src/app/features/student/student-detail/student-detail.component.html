@@ -1,0 +1,36 @@
+<p-panel>
+	<p-header>
+        <div class="ui-helper-clearfix">
+            <span class="ui-panel-title">{{'Student-title' | translate}}</span>
+        </div>
+    </p-header>
+	<div class="ui-fluid">
+		<div class="ui-g">
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-Name' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input id="input" type="text" pInputText [(ngModel)]="student.Name"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-LastName' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input id="input" type="text"  pInputText [(ngModel)]="student.LastName"> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<p-footer>
+		<p-button label="{{'Save' | translate}}" styleClass="ui-button-success"		
+			class="button-space"
+			icon="pi pi-save" (onClick)="saveStudent()" 
+			iconPos="left"> </p-button>
+		<p-button label="{{'Back' | translate}}" 			
+			icon="pi pi-arrow-left" (onClick)="back()" 
+			iconPos="left"> </p-button>
+    </p-footer>
+</p-panel>

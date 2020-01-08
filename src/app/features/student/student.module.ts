@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentComponent } from 'src/app/features/student/student.component';
+import { StudentListComponent } from 'src/app/features/student/student-list/student-list.component';
 import { AppCommonModule } from 'src/app/app.common.module';
 import { HeaderBreadCrumbModule } from 'src/app/shared/layout/header-breadcrumb/header-breadcrumb.module';
-import { StudentRoutingModule } from './student-routing.module';
+import { StudentRoutingModule } from 'src/app/features/student/student-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StudentDetailComponent } from 'src/app/features/student/student-detail/student-detail.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [StudentComponent],
+  declarations: [StudentListComponent, StudentDetailComponent],
   imports: [
     CommonModule,
     AppCommonModule,
