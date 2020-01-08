@@ -20,11 +20,18 @@
     "Student-Name": "Nombre",
     "Student-LastName": "Apeidos",
     "Student-BirthDate": "Fecha Nacimiento",
+    "Student-Email": "Correo Electronico",
+    "Student-PhoneNumber": "Telefono fijo",
+    "Student-MobileNumber": "Telefono Celular / WhatsApp",
+    "Student-Address": "Direccion",
     "Student-Gender":"Genero",
     "GlobalFilterPlaceHolder": "Buscar",
     "Student-Add": "Agregar Alumno",
     "Back":"Regresar",
     "Success": "Correcto !",
-    "Success-Save": "Guardado correcto"
+    "Success-Save": "Guardado correcto",
+    "Male": "Masculino",
+    "Famele": "Femenino",
+    "Select": "Seleccione"
 
 }

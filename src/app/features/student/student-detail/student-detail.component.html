@@ -11,7 +11,7 @@
 					{{'Student-Name' | translate}}
 				</div>
 				<div class="ui-g-8">
-					<input id="input" type="text" pInputText [(ngModel)]="student.Name"> 
+					<input type="text" pInputText [(ngModel)]="student.Name"> 
 				</div>
 			</div>
 			<div class="ui-g-12 ui-md-6">
@@ -19,7 +19,56 @@
 					{{'Student-LastName' | translate}}
 				</div>
 				<div class="ui-g-8">
-					<input id="input" type="text"  pInputText [(ngModel)]="student.LastName"> 
+					<input type="text"  pInputText [(ngModel)]="student.LastName"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-BirthDate' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<p-calendar [(ngModel)]="student.BirthDate" [locale]="es" dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-Email' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input type="email" pInputText [(ngModel)]="student.Email"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-PhoneNumber' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input type="text" mask="(999) 999-9999" placeholder="(999) 999-9999"  pInputText [(ngModel)]="student.PhoneNumber"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-MobileNumber' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input type="text" mask="(999) 999-9999" placeholder="(999) 999-9999" pInputText [(ngModel)]="student.MobileNumber"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-Address' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<input type="text" pInputText [(ngModel)]="student.Address"> 
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6">
+				<div class="ui-g-4">
+					{{'Student-Gender' | translate}}
+				</div>
+				<div class="ui-g-8">
+					<p-dropdown [options]="genders" [(ngModel)]="student.Gender" placeholder="{{'Select' | translate}}" 
+					optionLabel="name" [showClear]="true"></p-dropdown>
 				</div>
 			</div>
 		</div>

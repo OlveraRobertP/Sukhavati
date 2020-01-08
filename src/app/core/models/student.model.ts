@@ -5,6 +5,7 @@ export class Student {
 	BirthDate: Date;
 	Email: string;
 	PhoneNumber: string;
+	MobileNumber: string;
 	Address: string;
 	Gender: string;
 }

@@ -33,20 +33,11 @@ const appRoutes: Routes = [
             canActivate: [AuthGuard]
         },
         {
-            path: 'employees',
-            loadChildren: () => import('src/app/features/employees/employees.module').then(m => m.EmployeesModule),
-            canActivate: [AuthGuard]
-        },
-        {
             path: 'aboutus',
             loadChildren: () => import('src/app/features/aboutus/aboutus.module').then(m => m.AboutUsModule),
             canActivate: [AuthGuard]
-        },
-        {
-            path: 'contactus',
-            loadChildren: () => import('src/app/features/contactus/contactus.module').then(m => m.ContactUsModule),
-            canActivate: [AuthGuard]
-        }]
+        }
+    ]
     },
     {
         path: 'error',
