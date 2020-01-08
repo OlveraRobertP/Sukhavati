@@ -10,10 +10,10 @@ const appRoutes: Routes = [
         path: 'login',
         loadChildren: () => import('src/app/features/login/login.module').then(m => m.LoginModule)
     },
-    {
-        path: 'register',
-        loadChildren: () => import('src/app/features/register-user/register-user.module').then(m => m.RegisterUserModule)
-    },
+    // {
+    //     path: 'register',
+    //     loadChildren: () => import('src/app/features/register-user/register-user.module').then(m => m.RegisterUserModule)
+    // },
     {
         path: 'main',
         component: LayoutComponent,
@@ -26,12 +26,7 @@ const appRoutes: Routes = [
             path: 'students',
             loadChildren: () => import('src/app/features/student/student.module').then(m => m.StudentModule),
             canActivate: [AuthGuard]
-        },
-        {
-            path: 'departments',
-            loadChildren: () => import('src/app/features/department/department.module').then(m => m.DepartmentModule),
-            canActivate: [AuthGuard]
-        },
+        },        
         {
             path: 'aboutus',
             loadChildren: () => import('src/app/features/aboutus/aboutus.module').then(m => m.AboutUsModule),

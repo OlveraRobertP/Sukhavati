@@ -24,14 +24,18 @@
     "Student-PhoneNumber": "Telefono fijo",
     "Student-MobileNumber": "Telefono Celular / WhatsApp",
     "Student-Address": "Direccion",
-    "Student-Gender":"Genero",
+    "Student-Gender": "Genero",
+    "Student-Name-Placeholder": "Nombre del Alumno",
+    "Student-LastName-Placeholder": "Apeido del Alumno",
     "GlobalFilterPlaceHolder": "Buscar",
-    "Student-Add": "Agregar Alumno",
-    "Back":"Regresar",
+    "Student-Add": "Registrar Alumno",
+    "Back": "Regresar",
     "Success": "Correcto !",
     "Success-Save": "Guardado correcto",
     "Male": "Masculino",
-    "Famele": "Femenino",
-    "Select": "Seleccione"
-
+    "Female": "Femenino",
+    "Select": "Seleccione",
+    "Save": "Guardar",
+    "Email-Valid": "No corresponde a un correo electronico",
+    "Required": "Obligatorio"
 }
