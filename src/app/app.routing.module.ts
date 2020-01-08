@@ -26,7 +26,12 @@ const appRoutes: Routes = [
             path: 'students',
             loadChildren: () => import('src/app/features/student/student.module').then(m => m.StudentModule),
             canActivate: [AuthGuard]
-        },        
+        },
+        {
+            path: 'payments',
+            loadChildren: () => import('src/app/features/payment/payment.module').then(m => m.PaymentModule),
+            canActivate: [AuthGuard]
+        },
         {
             path: 'aboutus',
             loadChildren: () => import('src/app/features/aboutus/aboutus.module').then(m => m.AboutUsModule),

@@ -11,7 +11,6 @@ import { Student } from 'src/app/core/models/student.model';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-  columns: any[];
 
   students: Student[];
 
@@ -20,24 +19,15 @@ export class StudentListComponent implements OnInit {
     public translate: TranslateService) { }
 
   ngOnInit() {
-
-    this.columns = [
-      { field: 'Id', header: 'Student-Id' },
-      { field: 'Name', header: 'Student-Name' },
-      { field: 'LastName', header: 'Student-Name' },
-      { field: 'BirthDate', header: 'Student-BirthDate' },
-      { field: 'Gender', header: 'Student-Gender' }
-    ];
-
     this.students = this.studentService.getStudentList();
   }
 
-  goToStudentDetails(student) {
-    this.routeStateService.add("Student details", "/main/students/student-detail", student, false);
+  goToStudentDetails(student:  Student) {
+    this.routeStateService.add('Student detail', '/main/students/student-detail', student, false);
   }
 
   addStudent() {
-    this.routeStateService.add("Student details", "/main/students/student-detail", null, false);
+    this.routeStateService.add('Student details', '/main/students/student-detail', null, false);
   }
 
 }

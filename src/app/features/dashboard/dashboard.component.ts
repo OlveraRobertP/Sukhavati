@@ -53,10 +53,8 @@ export class DashboardComponent implements OnInit {
 
     this.msgs = [];
     
-    translate.get("WelcomeMessage").subscribe((text: string) => {
-      this.msgs.push({ severity: 'success', summary: '', detail: text });
-    });
-
+    this.msgs.push({ severity: 'success', summary: '', detail: translate.instant('WelcomeMessage') });
+    
   }
 
   ngOnInit() {

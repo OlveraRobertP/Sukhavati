@@ -7,21 +7,22 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
-import { StudentRoutingModule } from 'src/app/features/student/student-routing.module';
-import { StudentListComponent } from 'src/app/features/student/student-list/student-list.component';
-import { StudentDetailComponent } from 'src/app/features/student/student-detail/student-detail.component';
+import { PaymentRoutingModule } from 'src/app/features/payment/payment-routing.module';
+import { PaymentListComponent } from './payment-list/payment-list.component';
+import { PaymentDetailComponent } from './payment-detail/payment-detail.component'
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [StudentListComponent, StudentDetailComponent],
+  declarations: [PaymentListComponent, PaymentDetailComponent],
   imports: [
     CommonModule,
     AppCommonModule,
     HeaderBreadCrumbModule,
-    StudentRoutingModule,
+    PaymentRoutingModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -31,6 +32,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: false
     })
   ],
-  exports:[TranslateModule]
+   exports:[TranslateModule]
 })
-export class StudentModule { }
+export class PaymentModule { }

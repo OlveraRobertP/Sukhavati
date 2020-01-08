@@ -2,6 +2,9 @@
     "Sukhavaty": "Sukhavaty",
     "Login": "Acceso",
     "Register": "Regristo",
+    "Payments": "Pagos",
+    "Attendances": "Asistencias",
+    "Reports": "Reportes",
     "WelcomeMessage": "Bienvenido a Sukhavaty",
     "Home": "Inicio",
     "Students": "Alumnos",
@@ -37,5 +40,15 @@
     "Select": "Seleccione",
     "Save": "Guardar",
     "Email-Valid": "No corresponde a un correo electronico",
-    "Required": "Obligatorio"
+    "Required": "Obligatorio",    
+    "Students-In-Role": "Alumnos Inscritos",
+    "Attendance-In-Month": "Asistencias en el mes",
+    "Sell-Packages-In-Month": "Paquetes Vendidos en el mes",
+    "Paymet-Add": "Registrar Pago",
+    "Payment-Id": "Numero de pago",
+    "Payment-Student": "Alumno",
+    "Payment-PurchasedSet": "Paquete adquirido",
+    "Payment-Aumont": "Monto del pago (MNX)",
+    "Payment-TransactionDate": "Fecha de Pago"
+
 }

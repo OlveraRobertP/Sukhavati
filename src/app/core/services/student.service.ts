@@ -22,17 +22,17 @@ export class StudentService {
       },
       {
         Id: 3, Name: 'Ivonne', LastName: 'Juarez', BirthDate: new Date('2/5/1979'),
-        Address: 'Calle Matamoros No. 127', Email: 'ana.garcia@hotmail.com', Gender: 'Mujer',
+        Address: 'Calle Matamoros No. 127', Email: 'ivone@hotmail.com', Gender: 'Mujer',
         MobileNumber: '', PhoneNumber: '55-06-35-07-76'
       },
       {
         Id: 4, Name: 'Hector', LastName: 'Fuentes', BirthDate: new Date('5/18/1965'),
-        Address: 'Av. 5 De Mayo No 1100-A', Email: 'ana.garcia@hotmail.com', Gender: 'Hombre',
+        Address: 'Av. 5 De Mayo No 1100-A', Email: 'hfuentes@gmal.com', Gender: 'Hombre',
         MobileNumber: '', PhoneNumber: '55-39-58-19-34'
       },
       {
         Id: 5, Name: 'Rosa Maria', LastName: 'Gamboa', BirthDate: new Date('1/31/1986'),
-        Address: 'Calle Ignacio Rayon No.949', Email: 'ana.garcia@hotmail.com', Gender: 'Mujer',
+        Address: 'Calle Ignacio Rayon No.949', Email: 'maria.g@hotmail.com', Gender: 'Mujer',
         MobileNumber: '', PhoneNumber: '55-09-28-59-52'
       },
     ];

@@ -1,0 +1,36 @@
+<p-panel >
+	<p-header>
+        <div >
+            <span class="ui-panel-title" >{{'Student-title' | translate}}</span>
+			<p-button class="float-rigth" label="{{'Paymet-Add' | translate}}" 
+			icon="pi pi-plus" (onClick)="addPayment()" 
+			iconPos="right"> </p-button>
+        </div>
+    </p-header>
+	<p-table #dt [globalFilterFields]="['Name','LastName','Gender']" [value]="payments" [paginator]="true" [rows]="10">
+		<ng-template pTemplate="caption">
+			<div style="text-align: right">
+				<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+				<input type="text" pInputText size="50" placeholder="{{'GlobalFilterPlaceHolder' | translate}}"
+					(input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 10%">{{'Payment-Id' | translate}} </th>
+				<th style="width: 25%">{{'Payment-Student' | translate}}</th>
+				<th style="width: 2%">{{'Payment-PurchasedSet' | translate}}</th>
+				<th style="width: 30%">{{'Payment-Amount' | translate}}</th>
+				<th style="width: 15%">{{'Payment-TransactionDate' | translate}}</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-student>
+			<tr>
+				<td style="text-align: center" ><a (click)="goToStudentDetails(student)">{{student.Id}}</a></td>
+				<td>{{student.Name + ' ' + student.LastName}}</td>
+				<td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
+				<td>{{student.Gender}}</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</p-panel>
