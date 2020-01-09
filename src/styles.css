@@ -392,3 +392,11 @@ a {
 .float-rigth{
 	float: right;
 }   
+
+.button-space{
+	margin-right: .25em
+}
+.aling-rigth{
+	text-align: right
+}
+

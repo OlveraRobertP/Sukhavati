@@ -45,11 +45,18 @@
     "Attendance-In-Month": "Asistencias en el mes",
     "Sell-Packages-In-Month": "Paquetes Vendidos en el mes",
     "Payment-Title": "Pagos",
+    "Payment-Title-Detail": "Detallle del Pago",
     "Payment-Add": "Registrar Pago",
     "Payment-Id": "Numero de pago",
     "Payment-Student": "Alumno",
     "Payment-PurchasedSet": "Paquete adquirido",
     "Payment-Amount": "Monto del pago (MNX)",
-    "Payment-TransactionDate": "Fecha de Pago"
+    "Payment-TransactionDate": "Fecha de Pago",
+    "Payment-Coments": "Comentarios",
+    "Payment-Student-Placeholder": "Nombre del Alumno",
+    "Payment-Type-Placeholder": "Forma de pago",
+    "Payment-Type": "Forma de Pago",
+    "Payment-Amount-Valid": "Monto de pago incorrecto",
+    "Payment-Type-PurchasedSet": "Paquete adquirido"
 
 }

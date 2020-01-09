@@ -2,99 +2,104 @@
 	<p-panel>
 		<p-header>
 			<div class="ui-helper-clearfix">
-				<span class="ui-panel-title">{{'Student-title' | translate}}</span>
+				<span class="ui-panel-title">{{'Payment-Title-Detail' | translate}}</span>
 			</div>
 		</p-header>
 		<div class="ui-fluid">
 			<div class="ui-g">
+				<!-- ALUMNO -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Payment-Student' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<p-autoComplete [(ngModel)]="payment.Student" [suggestions]="filteredStudentSingle"
-							(completeMethod)="filterStudentSingle($event)" field="name" [size]="30"
-							placeholder="Strudenst" [minLength]="1"></p-autoComplete>
+						<p-autoComplete [(ngModel)]="payment.Student" [suggestions]="filteredStudents"
+							(completeMethod)="filterStudents($event)" field="Name" [size]="30"
+							placeholder="{{'Payment-Student-Placeholder' | translate}}" [minLength]="1"
+							formControlName="Student">
+							<ng-template let-student pTemplate="item">
+								{{student.Name}} {{student.LastName}}
+							</ng-template>
+						</p-autoComplete>
 						<p-message severity="error" text="{{'Required' | translate}}"
-							*ngIf="!mainform.controls['gender'].valid&&mainform.controls['gender'].dirty">
+							*ngIf="!mainform.controls['Student'].valid&&mainform.controls['Student'].dirty">
 						</p-message>
 					</div>
 				</div>
-
+				<!-- TIPO DE PAGO -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-LastName' | translate}}*:
+						{{'Payment-Type' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.LastName"
-							placeholder="{{'Student-LastName-Placeholder' | translate}}" formControlName="lastname">
+						<p-autoComplete [(ngModel)]="payment.Type" [suggestions]="filteredTypes"
+							(completeMethod)="filterTypes($event)" field="Description" [size]="30"
+							placeholder="{{'Payment-Type-Placeholder' | translate}}" [minLength]="1"
+							formControlName="Type">
+							<ng-template let-type pTemplate="item">
+								{{type.Description}}
+							</ng-template>
+						</p-autoComplete>
 						<p-message severity="error" text="{{'Required' | translate}}"
-							*ngIf="!mainform.controls['lastname'].valid&&mainform.controls['lastname'].dirty">
+							*ngIf="!mainform.controls['Type'].valid&&mainform.controls['Type'].dirty">
 						</p-message>
 					</div>
 				</div>
+				<!-- FECHA DE LA TRANSACCION -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-BirthDate' | translate}}:
+						{{'Payment-TransactionDate' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<p-calendar [(ngModel)]="student.BirthDate" [locale]="es" dateFormat="dd/mm/yy"
-							formControlName="birthdate" [showIcon]="true"></p-calendar>
+						<p-calendar [(ngModel)]="payment.TransactionDate" [locale]="es" dateFormat="dd/mm/yy"
+							formControlName="TransDate" [showIcon]="true" [disabled]="true"></p-calendar>
 					</div>
 				</div>
+				<!-- MONTO -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-Email' | translate}}:
+						{{'Payment-Amount' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="email" pInputText [(ngModel)]="student.Email">
-						<p-message severity="error" text="{{'Email-Valid' | translate}}"
-							*ngIf="!mainform.controls['email'].valid&&mainform.controls['email'].dirty"></p-message>
+						<input type="text" formControlName="Amount" pInputText [(ngModel)]="payment.Amount">
+						<p-message severity="error" text="{{'Payment-Amount-Valid' | translate}}"
+							*ngIf="!mainform.controls['Amount'].valid&&mainform.controls['Amount'].dirty"></p-message>
 					</div>
 				</div>
+				<!-- PAQUETE DE CLASES  -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-PhoneNumber' | translate}}:
+						{{'Payment-PurchasedSet' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" mask="(999) 999-9999" formControlName="phonenumber"
-							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.PhoneNumber">
-					</div>
-				</div>
-				<div class="ui-g-12 ui-md-6">
-					<div class="ui-g-4">
-						{{'Student-MobileNumber' | translate}}:
-					</div>
-					<div class="ui-g-8">
-						<input type="text" formControlName="mobilenumber" mask="(999) 999-9999"
-							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.MobileNumber">
-					</div>
-				</div>
-				<div class="ui-g-12 ui-md-6">
-					<div class="ui-g-4">
-						{{'Student-Address' | translate}}:
-					</div>
-					<div class="ui-g-8">
-						<input type="text" formControlName="address" pInputText [(ngModel)]="student.Address">
-					</div>
-				</div>
-				<div class="ui-g-12 ui-md-6">
-					<div class="ui-g-4">
-						{{'Student-Gender' | translate}}:*
-					</div>
-					<div class="ui-g-8">
-						<p-dropdown [options]="genders" [(ngModel)]="student.Gender"
-							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="gender"
-							[showClear]="true"></p-dropdown>
+						<p-autoComplete [(ngModel)]="payment.PurchasedSet" [suggestions]="filteredPurchasedSets"
+							(completeMethod)="filterPurchasedSets($event)" field="Description" [size]="30"
+							placeholder="{{'Payment-Type-PurchasedSet' | translate}}" [minLength]="1"
+							formControlName="PurchasedSet">
+							<ng-template let-purchased pTemplate="item">
+								{{purchased.Description}}
+							</ng-template>
+						</p-autoComplete>
 						<p-message severity="error" text="{{'Required' | translate}}"
-							*ngIf="!mainform.controls['gender'].valid&&mainform.controls['gender'].dirty">
+							*ngIf="!mainform.controls['PurchasedSet'].valid&&mainform.controls['PurchasedSet'].dirty">
 						</p-message>
+					</div>
+				</div>
+				<!-- COMENTARIOS -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Payment-Coments' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<textarea rows="5" cols="30" pInputTextarea 
+						formControlName="Coments"
+						[(ngModel)]="payment.Coments" ></textarea>
 					</div>
 				</div>
 			</div>
 		</div>
 		<p-footer>
-			<p-button type="submit" label="{{'Save' | translate}}" [disabled]="!mainform.valid || readOnly"
+			<p-button type="submit" label="{{'Save' | translate}}" [disabled]="!mainform.valid || noSave" 
 				styleClass="ui-button-success" class="button-space" icon="pi pi-save" iconPos="left"> </p-button>
 			<p-button label="{{'Back' | translate}}" icon="pi pi-arrow-left" (onClick)="back()" iconPos="left">
 			</p-button>

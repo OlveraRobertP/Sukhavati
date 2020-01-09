@@ -7,6 +7,9 @@ import { RouteStateService } from 'src/app/core/services/route-state.service';
 import { CalendarService } from 'src/app/core/services/calendar.service';
 import { Student } from 'src/app/core/models/student.model';
 import { StudentService } from 'src/app/core/services/student.service';
+import { TypePayment } from 'src/app/core/models/type-payment.model';
+import { PaymentService } from 'src/app/core/services/payment.service';
+import { ClassSet } from 'src/app/core/models/class-set.model';
 
 @Component({
   selector: 'app-payment-detail',
@@ -23,19 +26,48 @@ export class PaymentDetailComponent implements OnInit {
 
   mainform: FormGroup;
 
-  filteredStudentSingle: any[];
-  students: any[];
+  student: Student;
+
+  filteredStudents: Student[];
+
+  students: Student[];
+
+  type: TypePayment;
+
+  filteredTypes: TypePayment[];
+
+  types: TypePayment[];
+
+  purchasedSet: ClassSet;
+
+  filteredPurchasedSets: ClassSet[];
+
+  purchasedSets: ClassSet[];
+
+  noSave: boolean;
 
   constructor(public translate: TranslateService,
     private routeStateService: RouteStateService,
     private messageService: MessageService,
     private fb: FormBuilder,
     private studentService: StudentService,
+    private paymentService: PaymentService,
     private calendarService: CalendarService) { }
 
   ngOnInit() {
     let routeState = this.routeStateService.getCurrent();
     this.payment = routeState.data || new Payment();
+    
+    if (this.payment.Id == null) {
+      this.payment.TransactionDate = new Date()
+      this.noSave = false;
+    }else{
+      this.payment.TransactionDate = new Date(this.payment.TransactionDate )
+      this.noSave = true;
+    }
+
+    console.log(this.payment.TransactionDate)
+
     this.es = this.calendarService.getCalendarLabels();
 
     this.genders = [];
@@ -46,11 +78,18 @@ export class PaymentDetailComponent implements OnInit {
     this.mainform = this.fb.group({
       'Student': new FormControl('', Validators.required),
       'Type': new FormControl('', Validators.required),
-      'TransactionDate': new FormControl(''),
-      'Amount': new FormControl('', Validators.compose([Validators.required, Validators.pattern('[0-9]')])),
+      'TransDate': new FormControl(''),
+      'Amount': new FormControl('', Validators.compose([Validators.required, Validators.pattern('\\d+([.]\\d+)?')])),
       'PurchasedSet': new FormControl('', Validators.required),
       'Coments': new FormControl(''),
     });
+
+    this.students = this.studentService.getStudentList();
+
+    this.types = this.paymentService.getTypePayments();
+
+    this.purchasedSets = this.paymentService.getPurchasedSets();
+
   }
 
   back() {
@@ -65,23 +104,35 @@ export class PaymentDetailComponent implements OnInit {
     });
   }
 
-  filterStudentSingle(event) {
-    let query = event.query;
-    this.students = this.studentService.getStudentList();
-    this.filteredStudentSingle = this.filterStudent(query, this.students);
-
+  filterStudents(event) {
+    this.filteredStudents = [];
+    for (let i = 0; i < this.students.length; i++) {
+      let student = this.students[i];
+      if (student.Name.toLowerCase().indexOf(event.query.toLowerCase()) >= 0
+        || student.LastName.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+        this.filteredStudents.push(student);
+      }
+    }
   }
 
-   filterStudent(query, students: any[]):any[] {
-        //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-        let filtered : any[] = [];
-        for(let i = 0; i < students.length; i++) {
-            let student = students[i];
-            if(student.Name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filtered.push(student);
-            }
-        }
-        return filtered;
+  filterTypes(event) {
+    this.filteredTypes = [];
+    for (let i = 0; i < this.types.length; i++) {
+      let type = this.types[i];
+      if (type.Description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+        this.filteredTypes.push(type);
+      }
     }
+  }
+
+  filterPurchasedSets(event) {
+    this.filteredPurchasedSets = [];
+    for (let i = 0; i < this.purchasedSets.length; i++) {
+      let purchasedSet = this.purchasedSets[i];
+      if (purchasedSet.Description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+        this.filteredPurchasedSets.push(purchasedSet);
+      }
+    }
+  }
 
 }
