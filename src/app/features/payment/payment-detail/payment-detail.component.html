@@ -1,1 +1,103 @@
-<p>payment-detail works!</p>
+<form [formGroup]="mainform" (ngSubmit)="onSubmit(mainform.value)">
+	<p-panel>
+		<p-header>
+			<div class="ui-helper-clearfix">
+				<span class="ui-panel-title">{{'Student-title' | translate}}</span>
+			</div>
+		</p-header>
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Payment-Student' | translate}}*:
+					</div>
+					<div class="ui-g-8">
+						<p-autoComplete [(ngModel)]="payment.Student" [suggestions]="filteredStudentSingle"
+							(completeMethod)="filterStudentSingle($event)" field="name" [size]="30"
+							placeholder="Strudenst" [minLength]="1"></p-autoComplete>
+						<p-message severity="error" text="{{'Required' | translate}}"
+							*ngIf="!mainform.controls['gender'].valid&&mainform.controls['gender'].dirty">
+						</p-message>
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-LastName' | translate}}*:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" pInputText [(ngModel)]="student.LastName"
+							placeholder="{{'Student-LastName-Placeholder' | translate}}" formControlName="lastname">
+						<p-message severity="error" text="{{'Required' | translate}}"
+							*ngIf="!mainform.controls['lastname'].valid&&mainform.controls['lastname'].dirty">
+						</p-message>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-BirthDate' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<p-calendar [(ngModel)]="student.BirthDate" [locale]="es" dateFormat="dd/mm/yy"
+							formControlName="birthdate" [showIcon]="true"></p-calendar>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Email' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" formControlName="email" pInputText [(ngModel)]="student.Email">
+						<p-message severity="error" text="{{'Email-Valid' | translate}}"
+							*ngIf="!mainform.controls['email'].valid&&mainform.controls['email'].dirty"></p-message>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-PhoneNumber' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" mask="(999) 999-9999" formControlName="phonenumber"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.PhoneNumber">
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-MobileNumber' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" formControlName="mobilenumber" mask="(999) 999-9999"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.MobileNumber">
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Address' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" formControlName="address" pInputText [(ngModel)]="student.Address">
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Gender' | translate}}:*
+					</div>
+					<div class="ui-g-8">
+						<p-dropdown [options]="genders" [(ngModel)]="student.Gender"
+							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="gender"
+							[showClear]="true"></p-dropdown>
+						<p-message severity="error" text="{{'Required' | translate}}"
+							*ngIf="!mainform.controls['gender'].valid&&mainform.controls['gender'].dirty">
+						</p-message>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p-footer>
+			<p-button type="submit" label="{{'Save' | translate}}" [disabled]="!mainform.valid || readOnly"
+				styleClass="ui-button-success" class="button-space" icon="pi pi-save" iconPos="left"> </p-button>
+			<p-button label="{{'Back' | translate}}" icon="pi pi-arrow-left" (onClick)="back()" iconPos="left">
+			</p-button>
+		</p-footer>
+	</p-panel>
+</form>

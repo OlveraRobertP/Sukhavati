@@ -17,6 +17,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessagesModule } from 'primeng/messages';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { DropdownModule } from 'primeng/dropdown';
         InputTextareaModule,
         MessagesModule,
         DropdownModule,
+        AutoCompleteModule,
     ]
 })
 export class NgPrimeModule { }

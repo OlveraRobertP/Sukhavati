@@ -22,11 +22,11 @@ export class PaymentListComponent implements OnInit {
   }
 
   addPayment() {
-    this.routeStateService.add('Payment details', '/main/payment/payment-detail', null, false);
+    this.routeStateService.add('Payment details', '/main/payments/payments-detail', null, false);
   }
 
-  goToStudentDetails(student) {
-    this.routeStateService.add('Payment detail', '/main/students/student-detail', student, false);
+  goToPaymentDetails(payment) {
+    this.routeStateService.add('Payment detail', '/main/payments/payments-detail', payment, false);
   }
 
 }

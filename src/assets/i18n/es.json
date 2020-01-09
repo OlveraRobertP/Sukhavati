@@ -44,11 +44,12 @@
     "Students-In-Role": "Alumnos Inscritos",
     "Attendance-In-Month": "Asistencias en el mes",
     "Sell-Packages-In-Month": "Paquetes Vendidos en el mes",
-    "Paymet-Add": "Registrar Pago",
+    "Payment-Title": "Pagos",
+    "Payment-Add": "Registrar Pago",
     "Payment-Id": "Numero de pago",
     "Payment-Student": "Alumno",
     "Payment-PurchasedSet": "Paquete adquirido",
-    "Payment-Aumont": "Monto del pago (MNX)",
+    "Payment-Amount": "Monto del pago (MNX)",
     "Payment-TransactionDate": "Fecha de Pago"
 
 }
