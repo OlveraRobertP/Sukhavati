@@ -17,6 +17,8 @@ export class StudentDetailComponent implements OnInit {
 
   student: Student;
 
+  coloniasPorCp: string[];
+
   es: any;
 
   genders: SelectItem[];
@@ -46,6 +48,11 @@ export class StudentDetailComponent implements OnInit {
       'email': new FormControl('',Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
       'phonenumber': new FormControl('',),
       'mobilenumber': new FormControl(''),
+      'rfc': new FormControl(''),
+      'postalcode': new FormControl(''),
+      'colonia': new FormControl(''),
+      'region': new FormControl(''),
+      'country': new FormControl(''),
       'address': new FormControl(''),
       'gender': new FormControl('', Validators.required)
     });

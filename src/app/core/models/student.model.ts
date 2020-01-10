@@ -8,4 +8,9 @@ export class Student {
 	MobileNumber: string;
 	Address: string;
 	Gender: string;
+	Rfc: string;
+	PostalCode: string;
+	Colonia: string;
+	Region: string;
+	Country: string;
 }

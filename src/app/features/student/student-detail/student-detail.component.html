@@ -38,10 +38,20 @@
 					</div>
 					<div class="ui-g-8">
 						<p-calendar [(ngModel)]="student.BirthDate" [locale]="es" dateFormat="dd/mm/yy"
-							formControlName="birthdate"
-							[showIcon]="true"></p-calendar>
+							formControlName="birthdate" [showIcon]="true"></p-calendar>
 					</div>
 				</div>
+				<!-- RFC -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-RFC' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" pInputText [(ngModel)]="student.Rfc" formControlName="rfc" maxlength="13">
+					</div>
+				</div>
+
+				<!-- EMAIL -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-Email' | translate}}:
@@ -52,26 +62,30 @@
 							*ngIf="!mainform.controls['email'].valid&&mainform.controls['email'].dirty"></p-message>
 					</div>
 				</div>
+
+				<!-- TELEFONO -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-PhoneNumber' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" mask="(999) 999-9999"
-						formControlName="phonenumber" placeholder="(999) 999-9999" pInputText
-							[(ngModel)]="student.PhoneNumber">
+						<input type="text" mask="(999) 999-9999" formControlName="phonenumber"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.PhoneNumber">
 					</div>
 				</div>
+
+				<!-- CELULAR -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-MobileNumber' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="mobilenumber" 
-						mask="(999) 999-9999" placeholder="(999) 999-9999" pInputText
-							[(ngModel)]="student.MobileNumber">
+						<input type="text" formControlName="mobilenumber" mask="(999) 999-9999"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.MobileNumber">
 					</div>
 				</div>
+
+				<!-- DIRECCION -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-Address' | translate}}:
@@ -80,6 +94,50 @@
 						<input type="text" formControlName="address" pInputText [(ngModel)]="student.Address">
 					</div>
 				</div>
+
+				<!-- POSTAL CODE -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-PostalCode' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" pInputText [(ngModel)]="student.PostalCode" formControlName="postalcode">
+					</div>
+				</div>
+
+				<!-- COLONIA -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Colonia' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.Colonia"
+							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="colonia"
+							[showClear]="true"></p-dropdown>
+					</div>
+				</div>
+
+				<!-- REGION -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Region' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" formControlName="region" pInputText [(ngModel)]="student.Region" disabled="true">
+					</div>
+				</div>
+
+				<!-- COUNTRY -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-County' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" pInputText [(ngModel)]="student.Country" formControlName="country" disabled="true">
+					</div>
+				</div>
+
+				<!-- GENERO -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-Gender' | translate}}:*
