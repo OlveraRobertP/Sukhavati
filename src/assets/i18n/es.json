@@ -57,6 +57,10 @@
     "Payment-Type-Placeholder": "Forma de pago",
     "Payment-Type": "Forma de Pago",
     "Payment-Amount-Valid": "Monto de pago incorrecto",
-    "Payment-Type-PurchasedSet": "Paquete adquirido"
-
+    "Payment-Type-PurchasedSet": "Paquete adquirido",
+    "Attendance-Title": "Asistencias registradas",
+    "Attendance-Select-Student": "Seleccione alumno",
+    "Attendance-Student-Placeholder": "Nombre del alumno",
+    "Attendance-Student": "Alumno",
+    "Attendance-RegistrationDate": "Fecha y Hora de la asistencia"
 }

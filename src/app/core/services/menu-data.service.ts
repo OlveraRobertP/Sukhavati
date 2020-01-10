@@ -24,7 +24,7 @@ export class MenuDataService {
                 Label: 'Payments', Icon: 'fa-money-bill', RouterLink: '/main/payments', Childs: null, IsChildVisible: false
             },
             {
-                Label: 'Attendances', Icon: 'fa-check-square', RouterLink: '/main/attendance', Childs: null, IsChildVisible: false
+                Label: 'Attendances', Icon: 'fa-check-square', RouterLink: '/main/attendances', Childs: null, IsChildVisible: false
             },
             {
                 Label: 'Reports', Icon: 'fa-chart-line', RouterLink: '/main/reports', Childs: null, IsChildVisible: false

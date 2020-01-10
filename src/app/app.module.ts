@@ -18,11 +18,15 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppCommonModule } from 'src/app/app.common.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { registerLocaleData } from '@angular/common';
+import localeMx from '@angular/common/locales/es-MX';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+registerLocaleData(localeMx);
 
 @NgModule({
   declarations: [
