@@ -9,8 +9,8 @@ export class Student {
 	Address: string;
 	Gender: string;
 	Rfc: string;
-	PostalCode: string;
+	ZipCode: string;
 	Colonia: string;
 	Region: string;
-	Country: string;
+	City: string;
 }

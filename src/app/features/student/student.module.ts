@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { StudentRoutingModule } from 'src/app/features/student/student-routing.module';
 import { StudentListComponent } from 'src/app/features/student/student-list/student-list.component';
 import { StudentDetailComponent } from 'src/app/features/student/student-detail/student-detail.component';
+import { WebcamModule } from 'ngx-webcam';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -22,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppCommonModule,
     HeaderBreadCrumbModule,
     StudentRoutingModule,
+    WebcamModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -31,6 +33,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: false
     })
   ],
-  exports:[TranslateModule]
+  exports: [TranslateModule]
 })
 export class StudentModule { }

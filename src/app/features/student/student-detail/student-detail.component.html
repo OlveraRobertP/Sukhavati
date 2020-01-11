@@ -7,6 +7,25 @@
 		</p-header>
 		<div class="ui-fluid">
 			<div class="ui-g">
+				<div class="ui-g-12 ui-md-4 ui-sm-12">
+					<img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" width="200px" height="200px" />
+				</div>
+				<div class="ui-g-12 ui-md-4 ui-sm-12">
+					<webcam [height]="50" [width]="50" [trigger]="triggerObservable"
+						(imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
+						[switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+						(cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+					<div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸 {{'Take-Picture' | translate}}</div>
+					<!-- <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div> -->
+				</div>
+			</div>
+		</div>
+		<h4 *ngIf="errors.length > 0">{{'Error-Start-Cam' | translate}}:</h4>
+		<ul *ngFor="let error of errors">
+			<li>{{error | json}}</li>
+		</ul>
+		<div class="ui-fluid">
+			<div class="ui-g">
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-Name' | translate}}*:
@@ -95,13 +114,14 @@
 					</div>
 				</div>
 
-				<!-- POSTAL CODE -->
+				<!-- ZIP CODE -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-PostalCode' | translate}}:
+						{{'Student-ZipCode' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.PostalCode" formControlName="postalcode">
+						<input type="text" pInputText [(ngModel)]="student.ZipCode" formControlName="zipcode"
+							(change)="loadZipCodeInfo()" maxlength="5" minlength="5">
 					</div>
 				</div>
 
@@ -112,8 +132,9 @@
 					</div>
 					<div class="ui-g-8">
 						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.Colonia"
-							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="colonia"
-							[showClear]="true"></p-dropdown>
+							(onChange)="loadRegionAndCity($event.value)" placeholder="{{'Select' | translate}}"
+							optionLabel="response.asentamiento" formControlName="colonia" [showClear]="true">
+						</p-dropdown>
 					</div>
 				</div>
 
@@ -123,17 +144,18 @@
 						{{'Student-Region' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="region" pInputText [(ngModel)]="student.Region" disabled="true">
+						<input type="text" formControlName="region" pInputText [(ngModel)]="student.Region"
+							disabled="true">
 					</div>
 				</div>
 
-				<!-- COUNTRY -->
+				<!-- City -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
-						{{'Student-County' | translate}}:
+						{{'Student-City' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.Country" formControlName="country" disabled="true">
+						<input type="text" pInputText [(ngModel)]="student.City" formControlName="city" disabled="true">
 					</div>
 				</div>
 

@@ -28,10 +28,10 @@
     "Student-Address": "Direcci\u00F3n",
     "Student-Gender": "G\u00E9nero",
     "Student-RFC": "RFC",
-    "Student-PostalCode": "C\u00F3digo Postal",
+    "Student-ZipCode": "C\u00F3digo Postal",
     "Student-Colonia": "Colonia",
     "Student-Region": "Municipio / Alcaldia",
-    "Student-County": "Estado",
+    "Student-City": "Estado",
     "Student-Name-Placeholder": "Nombre del Alumno",
     "Student-LastName-Placeholder": "Apellido del Alumno",
     "GlobalFilterPlaceHolder": "Buscar",
@@ -66,5 +66,9 @@
     "Attendance-Select-Student": "Seleccione Alumno",
     "Attendance-Student-Placeholder": "Nombre del Alumno",
     "Attendance-Student": "Alumno",
-    "Attendance-RegistrationDate": "Fecha y Hora de la Asistencia"
+    "Attendance-RegistrationDate": "Fecha y Hora de la Asistencia",
+    "Error-Start-Cam": "Error al iniciar la camara",
+    "Take-Picture": "Tomar una Foto",
+    "Take-Picture-Placeholder": "Da Click para Tomar una Foto"
+
 }
