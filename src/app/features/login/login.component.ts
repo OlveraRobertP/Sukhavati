@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.userName = "";
     this.password = "";
-    this.locale = this.sessionService.getItem("ng-prime-language");
+    this.locale = this.sessionService.getItem("sukhavati-language");
     this.version = environment.version;
     //this.msgs = [{ severity: 'info', detail: 'UserName: admin' }, { severity: 'info', detail: 'Password: password' }];
   }
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     }
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     this.translate.use(this.locale);  
-    this.sessionService.setItem("ng-prime-language", this.locale);
+    this.sessionService.setItem("sukhavati-language", this.locale);
   }
 
 }
