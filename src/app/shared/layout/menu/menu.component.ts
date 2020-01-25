@@ -72,8 +72,8 @@ export class MenuComponent implements OnInit {
     }
 
     // toggle sub menu on click
-    toggleSubMenu(menu: CustomMenuItem) {
-        menu.IsChildVisible = !menu.IsChildVisible;
-    }
+    // toggleSubMenu(menu: CustomMenuItem) {
+    //     menu.IsChildVisible = !menu.IsChildVisible;
+    // }
 
 }

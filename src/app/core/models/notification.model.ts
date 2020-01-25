@@ -1,10 +1,10 @@
 export class notification {
-    constructor(message: string, createdOn: Date, createdBy: number) {
+    constructor(message: string, createdOn: string, createdBy: number) {
         this.message = message;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
     }
     message: string;
-    createdOn: Date;
+    createdOn: string;
     createdBy: number;
 }

@@ -1,4 +1,4 @@
 export class ClassSet {
-    Id: number;
-	Description: string;	
+    id: number;
+	description: string;	
 }

@@ -1,16 +1,16 @@
 export class Student {
-	Id: number;
-	Name: string;
-	LastName: string;
-	BirthDate: Date;
-	Email: string;
-	PhoneNumber: string;
-	MobileNumber: string;
-	Address: string;
-	Gender: string;
-	Rfc: string;
-	ZipCode: string;
-	Colonia: string;
-	Region: string;
-	City: string;
+	id: number;
+	name: string;
+	lastName: string;
+	birthDate: string;
+	email: string;
+	phoneNumber: string;
+	mobileNumber: string;
+	address: string;
+	gender: string;
+	rfc: string;
+	zipCode: string;
+	colonia: string;
+	region: string;
+	city: string;
 }

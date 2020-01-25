@@ -1,15 +1,7 @@
 export class User {
-    constructor() {
-        this.userId = null;
-        this.userName = null;
-        this.password = null;
-        this.emailId = null;
-        this.birthDate = null;
-    }
-
-    userId: number;
+    id: number;
+    userId: string;
     userName: string;
-    password: string;
-    emailId: string;
-    birthDate: Date;
+    password?: string;
+    emailId?: string;
 }

@@ -1,4 +1,4 @@
 export class Course {
-    Id: number;
-	Description: string;
+    id: number;
+	description: string;
 }

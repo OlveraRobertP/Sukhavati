@@ -1,4 +1,4 @@
 export class TypePayment {
-    Id: number;
-	Description: string;
+    id: number;
+	description: string;
 }
