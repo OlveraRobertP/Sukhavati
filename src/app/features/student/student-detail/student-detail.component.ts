@@ -91,14 +91,14 @@ export class StudentDetailComponent implements OnInit {
   }
 
   loadZipCodeInfo() {
-    this.sepomexService.getColoniasByCP(this.student.ZipCode).subscribe((data) => {
+    this.sepomexService.getColoniasByCP(this.student.zipCode).subscribe((data) => {
       this.coloniasPorCp = data;
     });
   }
 
   loadRegionAndCity(data) {
-    this.student.Region = data.response.municipio;
-    this.student.City = data.response.estado;
+    this.student.region = data.response.municipio;
+    this.student.city = data.response.estado;
   }
 
   back() {

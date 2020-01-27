@@ -1,6 +1,7 @@
 {
     "Sukhavaty": "Sukhavaty",
     "Login": "Acceso",
+    "Login-fail": "Usuario o Contraseña incorrecta",
     "Register": "Regristo",
     "Payments": "Pagos",
     "Attendances": "Asistencias",

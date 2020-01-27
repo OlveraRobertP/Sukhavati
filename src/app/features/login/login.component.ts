@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
 
   msgs: any[];
 
+  user: User;
+
   constructor(
     private userService: UserDataService,
     private toastService: ToastService,
@@ -43,14 +45,18 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin() {
-    let user: User = this.userService.getUserByUserNameAndPassword(this.userName, this.password);
-    if (user) {
-      this.userContextService.setUser(user);
-      this.routeStateService.add("Dashboard", '/main/dashboard', null, true);
-      return;
-    }
-    this.toastService.addSingle('error', '', 'Invalid user.');
-    return;
+    this.userService.getUserByUserNameAndPassword(this.userName, this.password)
+      .subscribe((data) => {
+        this.user = data;
+        if (this.user.id) {
+          this.userContextService.setUser(this.user);
+          this.routeStateService.add("Dashboard", '/main/dashboard', null, true);
+          return;
+        }
+        this.toastService.addSingle('error', '',this.translate.instant('Login-fail'));
+        return;
+      });
+
   }
 
   onLanguageChange($event) {
@@ -59,7 +65,7 @@ export class LoginComponent implements OnInit {
       this.locale = "es";
     }
     // the lang to use, if the lang isn't available, it will use the current loader to get them
-    this.translate.use(this.locale);  
+    this.translate.use(this.locale);
     this.sessionService.setItem("sukhavati-language", this.locale);
   }
 

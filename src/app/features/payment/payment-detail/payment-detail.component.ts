@@ -58,15 +58,15 @@ export class PaymentDetailComponent implements OnInit {
     let routeState = this.routeStateService.getCurrent();
     this.payment = routeState.data || new Payment();
     
-    if (this.payment.Id == null) {
-      this.payment.TransactionDate = new Date()
+    if (this.payment.id == null) {
+      this.payment.transactionDate = new Date().toLocaleDateString();
       this.noSave = false;
     }else{
-      this.payment.TransactionDate = new Date(this.payment.TransactionDate )
+      this.payment.transactionDate = new Date(this.payment.transactionDate ).toLocaleDateString();
       this.noSave = true;
     }
 
-    console.log(this.payment.TransactionDate)
+    console.log(this.payment.transactionDate)
 
     this.es = this.calendarService.getCalendarLabels();
 
@@ -108,8 +108,8 @@ export class PaymentDetailComponent implements OnInit {
     this.filteredStudents = [];
     for (let i = 0; i < this.students.length; i++) {
       let student = this.students[i];
-      if (student.Name.toLowerCase().indexOf(event.query.toLowerCase()) >= 0
-        || student.LastName.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+      if (student.name.toLowerCase().indexOf(event.query.toLowerCase()) >= 0
+        || student.lastName.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
         this.filteredStudents.push(student);
       }
     }
@@ -119,7 +119,7 @@ export class PaymentDetailComponent implements OnInit {
     this.filteredTypes = [];
     for (let i = 0; i < this.types.length; i++) {
       let type = this.types[i];
-      if (type.Description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+      if (type.description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
         this.filteredTypes.push(type);
       }
     }
@@ -129,7 +129,7 @@ export class PaymentDetailComponent implements OnInit {
     this.filteredPurchasedSets = [];
     for (let i = 0; i < this.purchasedSets.length; i++) {
       let purchasedSet = this.purchasedSets[i];
-      if (purchasedSet.Description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+      if (purchasedSet.description.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
         this.filteredPurchasedSets.push(purchasedSet);
       }
     }

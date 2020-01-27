@@ -35,8 +35,8 @@ export class AttendanceListComponent implements OnInit {
     this.filteredStudents = [];
     for (let i = 0; i < this.students.length; i++) {
       let student = this.students[i];
-      if (student.Name.toLowerCase().indexOf(event.query.toLowerCase()) >= 0
-        || student.LastName.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
+      if (student.name.toLowerCase().indexOf(event.query.toLowerCase()) >= 0
+        || student.lastName.toLowerCase().indexOf(event.query.toLowerCase()) >= 0) {
         this.filteredStudents.push(student);
       }
     }

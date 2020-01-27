@@ -7,7 +7,7 @@
 			iconPos="right"> </p-button>
         </div>
     </p-header>
-	<p-table #dt [globalFilterFields]="['Id','Student.Name','Student.LastName','PurchasedSet.Description','TransactionDate']" [value]="payments" [paginator]="true" [rows]="10">
+	<p-table #dt [globalFilterFields]="['id','student.name','student.lastName','purchasedSet.description','transactionDate']" [value]="payments" [paginator]="true" [rows]="10">
 		<ng-template pTemplate="caption">
 			<div style="text-align: right">
 				<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -26,11 +26,11 @@
 		</ng-template>
 		<ng-template pTemplate="body" let-payment>
 			<tr>
-				<td style="text-align: center" ><a (click)="goToPaymentDetails(payment)">{{payment.Id}}</a></td>
-				<td>{{payment.Student.Name + ' ' + payment.Student.LastName}}</td>
-				<td >{{payment.PurchasedSet.Description}}</td>				
-				<td style="text-align: right" >{{payment.Amount | currency }}</td>
-				<td style="text-align: center">{{payment.TransactionDate | date:'dd/MM/yyyy'}}</td>
+				<td style="text-align: center" ><a (click)="goToPaymentDetails(payment)">{{payment.id}}</a></td>
+				<td>{{payment.student.name + ' ' + payment.student.lastName}}</td>
+				<td >{{payment.purchasedSet.description}}</td>				
+				<td style="text-align: right" >{{payment.amount | currency }}</td>
+				<td style="text-align: center">{{payment.transactionDate}}</td>
 			</tr>
 		</ng-template>
 	</p-table>

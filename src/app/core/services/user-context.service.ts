@@ -22,6 +22,10 @@ export class UserContextService {
         this.user$.next(user);
     }
 
+    public getUser(){
+        return this.sessionService.getItem("currentUser");
+    }
+
     public logout() {
         this.sessionService.removeItem("currentUser");
         this.user$.next(defaultUser);

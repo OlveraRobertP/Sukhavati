@@ -1,4 +1,4 @@
-export class notification {
+export class Notification {
     constructor(message: string, createdOn: string, createdBy: number) {
         this.message = message;
         this.createdBy = createdBy;

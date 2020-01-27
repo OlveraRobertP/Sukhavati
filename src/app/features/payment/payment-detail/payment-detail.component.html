@@ -13,7 +13,7 @@
 						{{'Payment-Student' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<p-autoComplete [(ngModel)]="payment.Student" [suggestions]="filteredStudents"
+						<p-autoComplete [(ngModel)]="payment.student" [suggestions]="filteredStudents"
 							(completeMethod)="filterStudents($event)" field="Name" [size]="30"
 							placeholder="{{'Payment-Student-Placeholder' | translate}}" [minLength]="1"
 							formControlName="Student">
@@ -32,7 +32,7 @@
 						{{'Payment-Type' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<p-autoComplete [(ngModel)]="payment.Type" [suggestions]="filteredTypes"
+						<p-autoComplete [(ngModel)]="payment.type" [suggestions]="filteredTypes"
 							(completeMethod)="filterTypes($event)" field="Description" [size]="30"
 							placeholder="{{'Payment-Type-Placeholder' | translate}}" [minLength]="1"
 							formControlName="Type">
@@ -51,7 +51,7 @@
 						{{'Payment-TransactionDate' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<p-calendar [(ngModel)]="payment.TransactionDate" [locale]="es" dateFormat="dd/mm/yy"
+						<p-calendar [(ngModel)]="payment.transactionDate" [locale]="es" dateFormat="dd/mm/yy"
 							formControlName="TransDate" [showIcon]="true" [disabled]="true"></p-calendar>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 						{{'Payment-Amount' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="Amount" pInputText [(ngModel)]="payment.Amount">
+						<input type="text" formControlName="Amount" pInputText [(ngModel)]="payment.amount">
 						<p-message severity="error" text="{{'Payment-Amount-Valid' | translate}}"
 							*ngIf="!mainform.controls['Amount'].valid&&mainform.controls['Amount'].dirty"></p-message>
 					</div>
@@ -72,7 +72,7 @@
 						{{'Payment-PurchasedSet' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<p-autoComplete [(ngModel)]="payment.PurchasedSet" [suggestions]="filteredPurchasedSets"
+						<p-autoComplete [(ngModel)]="payment.purchasedSet" [suggestions]="filteredPurchasedSets"
 							(completeMethod)="filterPurchasedSets($event)" field="Description" [size]="30"
 							placeholder="{{'Payment-Type-PurchasedSet' | translate}}" [minLength]="1"
 							formControlName="PurchasedSet">
@@ -93,7 +93,7 @@
 					<div class="ui-g-8">
 						<textarea rows="5" cols="30" pInputTextarea 
 						formControlName="Coments"
-						[(ngModel)]="payment.Coments" ></textarea>
+						[(ngModel)]="payment.coments" ></textarea>
 					</div>
 				</div>
 			</div>

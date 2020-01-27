@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
 import { SessionService } from 'src/app/core/services/session.service';
 import { User } from 'src/app/core/models/user.model';
-import { notification } from 'src/app/core/models/notification.model';
+import { Notification } from 'src/app/core/models/notification.model';
 import { UserIdleService } from 'angular-user-idle';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { UserContextService } from 'src/app/core/services/user-context.service';
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   displayNotifications: boolean;
 
-  notifications: notification[];
+  notifications: Notification[];
 
   constructor(
     private router: Router,
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
     this.user = this.sessionService.getItem("currentUser");
     this.notifications = [];
     for (var i = 1; i <= 5; i++) {
-      var notificationObj = new notification("Message " + i, new Date(), null)
+      var notificationObj = new Notification("Message " + i, new Date().toDateString(), null)
       this.notifications.push(notificationObj);
     }
 
