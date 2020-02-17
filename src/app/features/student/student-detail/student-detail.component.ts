@@ -9,6 +9,7 @@ import { SelectItem } from 'primeng/api';
 import { SepomexService } from 'src/app/core/services/sepomex.service';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { StudentService } from 'src/app/core/services/student.service';
 
 
 @Component({
@@ -26,10 +27,9 @@ export class StudentDetailComponent implements OnInit {
 
   genders: SelectItem[];
 
-  mainform: FormGroup;
+  genderSelected: SelectItem;
 
-  @Output()
-  public pictureTaken = new EventEmitter<WebcamImage>();
+  mainform: FormGroup;
 
   // toggle webcam on/off
   public showWebcam = true;
@@ -47,15 +47,16 @@ export class StudentDetailComponent implements OnInit {
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
-  // latest snapshot
-  public webcamImage: WebcamImage = null;
 
   constructor(public translate: TranslateService,
     private routeStateService: RouteStateService,
     private messageService: MessageService,
     private fb: FormBuilder,
+    private studentService: StudentService,
     private calendarService: CalendarService,
     private sepomexService: SepomexService) { }
+
+  
 
   ngOnInit() {
     let routeState = this.routeStateService.getCurrent();
@@ -64,8 +65,15 @@ export class StudentDetailComponent implements OnInit {
 
     this.genders = [];
     this.genders.push({ label: this.translate.instant('Select'), value: '' });
-    this.genders.push({ label: this.translate.instant('Male'), value: 'Male' });
-    this.genders.push({ label: this.translate.instant('Female'), value: 'Female' });
+    this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
+    this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
+
+    if(this.student.gender == 'M'){
+        this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
+    }else if(this.student.gender == 'F'){
+      this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
+    }
+
 
     this.mainform = this.fb.group({
       'name': new FormControl('', Validators.required),
@@ -80,6 +88,9 @@ export class StudentDetailComponent implements OnInit {
       'region': new FormControl(''),
       'city': new FormControl(''),
       'address': new FormControl(''),
+      'maritalStatus': new FormControl(''),
+      'comments': new FormControl(''),
+      'extraComments': new FormControl(''),
       'gender': new FormControl('', Validators.required)
     });
 
@@ -87,6 +98,7 @@ export class StudentDetailComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+      
 
   }
 
@@ -106,13 +118,21 @@ export class StudentDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    /// save student    
+    /// save student   
+    this.student.gender = this.genderSelected.value; 
+    console.log(this.student);
+    this.studentService.save(this.student).subscribe(
+      data => {
+        console.log(data);
+      }
+  );;
     this.messageService.add({
       severity: 'success', summary: this.translate.instant('Success'),
       detail: this.translate.instant('Success-Save')
     });
 
   }
+
 
 
 
@@ -138,13 +158,11 @@ export class StudentDetailComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    console.info('received webcam image', webcamImage);
-    this.pictureTaken.emit(webcamImage);
-    this.webcamImage = webcamImage;
+    this.student.photo = webcamImage.imageAsDataUrl;
   }
 
   public cameraWasSwitched(deviceId: string): void {
-    console.log('active device: ' + deviceId);
+    //console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
   }
 

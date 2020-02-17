@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { AppSettings } from './app-settings.service';
 
 @Injectable({
     providedIn: 'root',
@@ -9,8 +10,10 @@ import { HttpClient } from '@angular/common/http';
  * user service class
  */
 export class UserDataService {
-
-    private urlApi = 'https://sukhavaty-services.appspot.com';
+    
+    
+    
+    private urlApi = AppSettings.urlApi;
 
     constructor(private httpClient: HttpClient) { }
 

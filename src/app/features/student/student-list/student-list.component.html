@@ -7,7 +7,7 @@
 			iconPos="right"> </p-button>
         </div>
     </p-header>
-	<p-table #dt [globalFilterFields]="['Name','LastName','Gender']" [value]="students" [paginator]="true" [rows]="10">
+	<p-table #dt [globalFilterFields]="['name','lastName','comments']" [value]="students" [paginator]="true" [rows]="10">
 		<ng-template pTemplate="caption">
 			<div style="text-align: right">
 				<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -20,15 +20,17 @@
 				<th style="width: 10%">{{'Student-Id' | translate}} </th>
 				<th style="width: 30%">{{'Student-Name' | translate}}</th>
 				<th style="width: 30%">{{'Student-BirthDate' | translate}}</th>
-				<th style="width: 30%">{{'Student-Gender' | translate}}</th>
+				<th style="width: 30%">{{'Student-Comments' | translate}}</th>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="body" let-student>
 			<tr>
-				<td style="text-align: center" ><a (click)="goToStudentDetails(student)">{{student.Id}}</a></td>
-				<td>{{student.Name + ' ' + student.LastName}}</td>
-				<td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
-				<td>{{student.Gender}}</td>
+				<td style="text-align: center" ><a (click)="goToStudentDetails(student)">{{student.id}}</a></td>
+				<td>{{student.name + ' ' + student.lastName}}</td>
+				<td>{{student.birthDate | date:'dd/MM/yyyy'}}</td>
+				<!-- <td>{{student.birthDate | date:'dd/MM/yyyy'}}</td> -->
+				<!-- <td>{{student.gender}}</td> -->
+				<td>{{student.comments}}</td>
 			</tr>
 		</ng-template>
 	</p-table>

@@ -5,10 +5,12 @@
 				<span class="ui-panel-title">{{'Student-title' | translate}}</span>
 			</div>
 		</p-header>
+		<!-- FOTO -->
 		<div class="ui-fluid">
 			<div class="ui-g">
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
-					<img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" width="200px" height="200px" />
+					<!-- <img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" width="200px" height="200px" /> -->
+					<img *ngIf="student.photo != null" [src]="student.photo" width="200px" height="200px" />
 				</div>
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
 					<webcam [height]="50" [width]="50" [trigger]="triggerObservable"
@@ -26,38 +28,40 @@
 		</ul>
 		<div class="ui-fluid">
 			<div class="ui-g">
+				<!-- NAME -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-Name' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.Name"
+						<input type="text" pInputText [(ngModel)]="student.name" maxlength="25"
 							placeholder="{{'Student-Name-Placeholder' | translate}}" formControlName="name">
 						<p-message severity="error" text="{{'Required' | translate}}"
 							*ngIf="!mainform.controls['name'].valid&&mainform.controls['name'].dirty">
 						</p-message>
 					</div>
 				</div>
-
+				<!-- LASTNAME -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-LastName' | translate}}*:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.LastName"
+						<input type="text" pInputText [(ngModel)]="student.lastName" maxlength="25"
 							placeholder="{{'Student-LastName-Placeholder' | translate}}" formControlName="lastname">
 						<p-message severity="error" text="{{'Required' | translate}}"
 							*ngIf="!mainform.controls['lastname'].valid&&mainform.controls['lastname'].dirty">
 						</p-message>
 					</div>
 				</div>
+				<!-- BIRTDAY -->
 				<div class="ui-g-12 ui-md-6">
 					<div class="ui-g-4">
 						{{'Student-BirthDate' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<p-calendar [(ngModel)]="student.BirthDate" [locale]="es" dateFormat="dd/mm/yy"
-							formControlName="birthdate" [showIcon]="true"></p-calendar>
+						<p-calendar [(ngModel)]="student.birthDate" [locale]="es" dateFormat="dd/mm/yy"
+							formControlName="birthdate" [showIcon]="true" ></p-calendar>
 					</div>
 				</div>
 				<!-- RFC -->
@@ -66,7 +70,7 @@
 						{{'Student-RFC' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.Rfc" formControlName="rfc" maxlength="13">
+						<input type="text" pInputText [(ngModel)]="student.rfc" formControlName="rfc" maxlength="13">
 					</div>
 				</div>
 
@@ -76,7 +80,7 @@
 						{{'Student-Email' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="email" pInputText [(ngModel)]="student.Email">
+						<input type="text" formControlName="email" pInputText [(ngModel)]="student.email" maxlength="30">
 						<p-message severity="error" text="{{'Email-Valid' | translate}}"
 							*ngIf="!mainform.controls['email'].valid&&mainform.controls['email'].dirty"></p-message>
 					</div>
@@ -88,8 +92,8 @@
 						{{'Student-PhoneNumber' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" mask="(999) 999-9999" formControlName="phonenumber"
-							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.PhoneNumber">
+						<input type="text" mask="(999) 999-9999" formControlName="phonenumber" maxlength="18"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.phoneNumber">
 					</div>
 				</div>
 
@@ -99,8 +103,8 @@
 						{{'Student-MobileNumber' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="mobilenumber" mask="(999) 999-9999"
-							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.MobileNumber">
+						<input type="text" formControlName="mobilenumber" mask="(999) 999-9999" maxlength="18"
+							placeholder="(999) 999-9999" pInputText [(ngModel)]="student.mobileNumber">
 					</div>
 				</div>
 
@@ -110,7 +114,7 @@
 						{{'Student-Address' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="address" pInputText [(ngModel)]="student.Address">
+						<input type="text" formControlName="address" pInputText [(ngModel)]="student.address" maxlength="40">
 					</div>
 				</div>
 
@@ -120,7 +124,7 @@
 						{{'Student-ZipCode' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.ZipCode" formControlName="zipcode"
+						<input type="text" pInputText [(ngModel)]="student.zipCode" formControlName="zipcode"
 							(change)="loadZipCodeInfo()" maxlength="5" minlength="5">
 					</div>
 				</div>
@@ -131,7 +135,7 @@
 						{{'Student-Colonia' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.Colonia"
+						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.colonia"
 							(onChange)="loadRegionAndCity($event.value)" placeholder="{{'Select' | translate}}"
 							optionLabel="response.asentamiento" formControlName="colonia" [showClear]="true">
 						</p-dropdown>
@@ -144,7 +148,7 @@
 						{{'Student-Region' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="region" pInputText [(ngModel)]="student.Region"
+						<input type="text" formControlName="region" pInputText [(ngModel)]="student.region"
 							disabled="true">
 					</div>
 				</div>
@@ -155,7 +159,7 @@
 						{{'Student-City' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.City" formControlName="city" disabled="true">
+						<input type="text" pInputText [(ngModel)]="student.city" formControlName="city" disabled="true">
 					</div>
 				</div>
 
@@ -165,12 +169,42 @@
 						{{'Student-Gender' | translate}}:*
 					</div>
 					<div class="ui-g-8">
-						<p-dropdown [options]="genders" [(ngModel)]="student.Gender"
-							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="gender"
+						<p-dropdown [options]="genders" [(ngModel)]="genderSelected" 
+							placeholder="{{'Select' | translate}}" optionLabel="label" formControlName="gender" 
 							[showClear]="true"></p-dropdown>
 						<p-message severity="error" text="{{'Required' | translate}}"
 							*ngIf="!mainform.controls['gender'].valid&&mainform.controls['gender'].dirty">
 						</p-message>
+					</div>
+				</div>
+
+				<!-- MARRITAL STATUS -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-MaritalStatus' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<input type="text" formControlName="maritalStatus" pInputText [(ngModel)]="student.maritalStatus" maxlength="20">
+					</div>
+				</div>
+
+				<!-- COMMENTS -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-Comments' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<textarea   formControlName="comments" pInputTextarea [(ngModel)]="student.comments" maxlength="80"></textarea>
+					</div>
+				</div>
+
+				<!-- EXTRA COMENTS -->
+				<div class="ui-g-12 ui-md-6">
+					<div class="ui-g-4">
+						{{'Student-ExtraComments' | translate}}:
+					</div>
+					<div class="ui-g-8">
+						<textarea  formControlName="extraComments" pInputTextarea [(ngModel)]="student.extraComments" autoResize="autoResize" maxlength="80"></textarea>
 					</div>
 				</div>
 			</div>

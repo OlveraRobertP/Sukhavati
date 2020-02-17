@@ -19,7 +19,9 @@ export class StudentListComponent implements OnInit {
     public translate: TranslateService) { }
 
   ngOnInit() {
-    this.students = this.studentService.getStudentList();
+    this.studentService.getStudentList().subscribe((data) => {
+        this.students = data;      
+    });
   }
 
   goToStudentDetails(student:  Student) {
