@@ -32,7 +32,7 @@ export class StudentDetailComponent implements OnInit {
   mainform: FormGroup;
 
   // toggle webcam on/off
-  public showWebcam = true;
+  public showWebcam = false;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
@@ -56,49 +56,48 @@ export class StudentDetailComponent implements OnInit {
     private calendarService: CalendarService,
     private sepomexService: SepomexService) { }
 
-  
+
 
   ngOnInit() {
     let routeState = this.routeStateService.getCurrent();
-    this.student = routeState.data || new Student();
-    this.es = this.calendarService.getCalendarLabels();
+    let studentSelected = routeState.data.id;
 
-    this.genders = [];
-    this.genders.push({ label: this.translate.instant('Select'), value: '' });
-    this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
-    this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
+    this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {
+      this.student = dataStudent || new Student();
+      this.es = this.calendarService.getCalendarLabels();
 
-    if(this.student.gender == 'M'){
+      this.genders = [];
+      this.genders.push({ label: this.translate.instant('Select'), value: '' });
+      this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
+      this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
+
+      if (this.student.gender == 'M') {
         this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
-    }else if(this.student.gender == 'F'){
-      this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
-    }
+      } else if (this.student.gender == 'F') {
+        this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
+      }
 
 
-    this.mainform = this.fb.group({
-      'name': new FormControl('', Validators.required),
-      'lastname': new FormControl('', Validators.required),
-      'birthdate': new FormControl(''),
-      'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
-      'phonenumber': new FormControl(''),
-      'mobilenumber': new FormControl(''),
-      'rfc': new FormControl(''),
-      'zipcode': new FormControl(''),
-      'colonia': new FormControl(''),
-      'region': new FormControl(''),
-      'city': new FormControl(''),
-      'address': new FormControl(''),
-      'maritalStatus': new FormControl(''),
-      'comments': new FormControl(''),
-      'extraComments': new FormControl(''),
-      'gender': new FormControl('', Validators.required)
-    });
-
-    WebcamUtil.getAvailableVideoInputs()
-      .then((mediaDevices: MediaDeviceInfo[]) => {
-        this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+      this.mainform = this.fb.group({
+        'name': new FormControl('', Validators.required),
+        'lastname': new FormControl('', Validators.required),
+        'birthdate': new FormControl(''),
+        'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
+        'phonenumber': new FormControl(''),
+        'mobilenumber': new FormControl(''),
+        'rfc': new FormControl(''),
+        'zipcode': new FormControl(''),
+        'colonia': new FormControl(''),
+        'region': new FormControl(''),
+        'city': new FormControl(''),
+        'address': new FormControl(''),
+        'maritalStatus': new FormControl(''),
+        'comments': new FormControl(''),
+        'extraComments': new FormControl(''),
+        'gender': new FormControl('', Validators.required)
       });
       
+    });
 
   }
 
@@ -119,13 +118,13 @@ export class StudentDetailComponent implements OnInit {
 
   onSubmit() {
     /// save student   
-    this.student.gender = this.genderSelected.value; 
+    this.student.gender = this.genderSelected.value;
     console.log(this.student);
     this.studentService.save(this.student).subscribe(
       data => {
         console.log(data);
       }
-  );;
+    );;
     this.messageService.add({
       severity: 'success', summary: this.translate.instant('Success'),
       detail: this.translate.instant('Success-Save')
@@ -139,6 +138,11 @@ export class StudentDetailComponent implements OnInit {
   /////////////////////////////////////
   ///////// CAMARA ////////////////////
   public triggerSnapshot(): void {
+    this.toggleWebcam()
+    WebcamUtil.getAvailableVideoInputs()
+        .then((mediaDevices: MediaDeviceInfo[]) => {
+          this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+        });
     this.trigger.next();
   }
 

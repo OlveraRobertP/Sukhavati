@@ -17,16 +17,14 @@
 		</ng-template>
 		<ng-template pTemplate="header">
 			<tr>
-				<th style="width: 10%">{{'Student-Id' | translate}} </th>
 				<th style="width: 30%">{{'Student-Name' | translate}}</th>
 				<th style="width: 30%">{{'Student-BirthDate' | translate}}</th>
-				<th style="width: 30%">{{'Student-Comments' | translate}}</th>
+				<th style="width: 40%">{{'Student-Comments' | translate}}</th>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="body" let-student>
-			<tr>
-				<td style="text-align: center" ><a (click)="goToStudentDetails(student)">{{student.id}}</a></td>
-				<td>{{student.name + ' ' + student.lastName}}</td>
+			<tr>				
+				<td><a (click)="goToStudentDetails(student)">{{student.name + ' ' + student.lastName}}</a></td>
 				<td>{{student.birthDate | date:'dd/MM/yyyy'}}</td>
 				<!-- <td>{{student.birthDate | date:'dd/MM/yyyy'}}</td> -->
 				<!-- <td>{{student.gender}}</td> -->

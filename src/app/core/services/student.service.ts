@@ -18,6 +18,11 @@ const httpOptions = {
 })
 export class StudentService {
 
+  getStudentById(studentSelected: number) {
+     const url = `${this.urlApi}/svc/student/getById/${studentSelected}/`;
+     return this.httpClient.get<Student>(url);
+  }
+
   private urlApi = AppSettings.urlApi;
 
   constructor(private httpClient: HttpClient) { }

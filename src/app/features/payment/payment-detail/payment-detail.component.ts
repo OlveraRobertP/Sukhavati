@@ -84,7 +84,9 @@ export class PaymentDetailComponent implements OnInit {
       'Coments': new FormControl(''),
     });
 
-    this.students = this.studentService.getStudentList();
+    this.studentService.getStudentList().subscribe((data) => {
+      this.students = data;      
+    });
 
     this.types = this.paymentService.getTypePayments();
 

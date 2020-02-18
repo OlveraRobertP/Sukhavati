@@ -14,9 +14,12 @@
 				</div>
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
 					<webcam [height]="50" [width]="50" [trigger]="triggerObservable"
-						(imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
+						(imageCapture)="handleImage($event)" 
+						*ngIf="showWebcam" 
+						[allowCameraSwitch]="allowCameraSwitch"
 						[switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
-						(cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+						(cameraSwitched)="cameraWasSwitched($event)" 
+						(initError)="handleInitError($event)"></webcam>
 					<div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸 {{'Take-Picture' | translate}}</div>
 					<!-- <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div> -->
 				</div>

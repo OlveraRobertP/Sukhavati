@@ -27,7 +27,9 @@ export class AttendanceListComponent implements OnInit {
     private studentService: StudentService) { }
 
   ngOnInit() {
-     this.students = this.studentService.getStudentList();
+    this.studentService.getStudentList().subscribe((data) => {
+      this.students = data;      
+    });
      this.attendances = this.attendanceService.getAttendancesList();
   }
 
