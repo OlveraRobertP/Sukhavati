@@ -10,6 +10,7 @@ import { SepomexService } from 'src/app/core/services/sepomex.service';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { StudentService } from 'src/app/core/services/student.service';
+import { Sepomex } from 'src/app/core/models/sepomex.model';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class StudentDetailComponent implements OnInit {
 
   student: Student;
 
-  coloniasPorCp: string;
+  coloniasPorCp: Sepomex[];
 
   es: any;
 
@@ -54,67 +55,69 @@ export class StudentDetailComponent implements OnInit {
     private fb: FormBuilder,
     private studentService: StudentService,
     private calendarService: CalendarService,
-    private sepomexService: SepomexService) { }
+    private sepomexService: SepomexService) { 
 
+    }
 
+    
 
     ngOnInit() {
+      this.mainform = this.fb.group({
+        'name': new FormControl('', Validators.required),
+        'lastname': new FormControl('', Validators.required),
+        'birthdate': new FormControl(''),
+        'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
+        'phonenumber': new FormControl(''),
+        'mobilenumber': new FormControl(''),
+        'rfc': new FormControl('',Validators.pattern('^([a-zA-Z]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([a-zA-Z0-9]{3}))?$')),
+        'zipcode': new FormControl(''),
+        'colonia': new FormControl(''),
+        'region': new FormControl(''),
+        'city': new FormControl(''),
+        'address': new FormControl(''),
+        'maritalStatus': new FormControl(''),
+        'comments': new FormControl(''),
+        'extraComments': new FormControl(''),
+        'gender': new FormControl('', Validators.required)
+      });      
+
+      this.genders = [];
+      this.genders.push({ label: this.translate.instant('Select'), value: '' });
+      this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
+      this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
+    
+
       let routeState = this.routeStateService.getCurrent();
-      let studentSelected = routeState.data.id;
-  
-      this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {
-        this.student = dataStudent || new Student();
-        this.es = this.calendarService.getCalendarLabels();
-  
-        this.genders = [];
-        this.genders.push({ label: this.translate.instant('Select'), value: '' });
-        this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
-        this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
-  
-        if (this.student.gender == 'M') {
-          this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
-        } else if (this.student.gender == 'F') {
-          this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
-        }
-  
-  
-        this.mainform = this.fb.group({
-          'name': new FormControl('', Validators.required),
-          'lastname': new FormControl('', Validators.required),
-          'birthdate': new FormControl(''),
-          'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
-          'phonenumber': new FormControl(''),
-          'mobilenumber': new FormControl(''),
-          'rfc': new FormControl('',Validators.pattern('^([a-zA-Z]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([a-zA-Z0-9]{3}))?$')),
-          'zipcode': new FormControl(''),
-          'colonia': new FormControl(''),
-          'region': new FormControl(''),
-          'city': new FormControl(''),
-          'address': new FormControl(''),
-          'maritalStatus': new FormControl(''),
-          'comments': new FormControl(''),
-          'extraComments': new FormControl(''),
-          'gender': new FormControl('', Validators.required)
+
+      if(routeState.data == null){
+        this.student = new Student();
+      }else{
+        let studentSelected = routeState.data.id;
+        this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {         
+          this.student = dataStudent || new Student();
+          this.es = this.calendarService.getCalendarLabels();                      
+          if (this.student.gender == 'M') {
+            this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
+          } else if (this.student.gender == 'F') {
+            this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
+          }
+
+          this.loadZipCodeInfo();
+          
         });
-        
-        this.loadZipCodeInfo();
-
-
-      });
-  
+      }      
     }
-  
 
-  loadZipCodeInfo() {
-    console.log(this.student.zipCode)
-    this.sepomexService.getColoniasByCP(this.student.zipCode).subscribe((data) => {
+
+  loadZipCodeInfo() {    
+    this.sepomexService.getColoniasByCP(this.student.zipCode).subscribe((data) => {       
       this.coloniasPorCp = data;
     });
   }
 
-  loadRegionAndCity(data) {
-    this.student.region = data.response.municipio;
-    this.student.city = data.response.estado;
+  loadRegionAndCity(data) {    
+    this.student.region = data.region;
+    this.student.city = data.city;
   }
 
   back() {
@@ -124,15 +127,25 @@ export class StudentDetailComponent implements OnInit {
   onSubmit() {
     /// save student   
     this.student.gender = this.genderSelected.value;
+    console.log("this.student");
+    console.log(this.student);
     this.studentService.save(this.student).subscribe(
       data => {
-        console.log(data);
+        console.log(data)
+        if(data.code == "OK"){
+          this.messageService.add({
+            severity: 'success', summary: this.translate.instant('Success'),
+            detail: this.translate.instant('Success-Save')
+          });
+        }else{
+          this.messageService.add({
+            severity: 'error', summary: this.translate.instant('Error'),
+            detail: data.message
+          });
+        }        
       }
-    );;
-    this.messageService.add({
-      severity: 'success', summary: this.translate.instant('Success'),
-      detail: this.translate.instant('Success-Save')
-    });
+    );
+   
 
   }
 

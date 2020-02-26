@@ -11,15 +11,16 @@
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
 					<!-- <img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" width="200px" height="200px" /> -->
 					<img *ngIf="student.photo != null" [src]="student.photo" width="200px" height="200px"  />
-				</div>
-				<div class="ui-g-12 ui-md-4 ui-sm-12">
-					<webcam [height]="50" [width]="50" [trigger]="triggerObservable"
+					<webcam [height]="200" [width]="200" [trigger]="triggerObservable"
 						(imageCapture)="handleImage($event)" 
 						*ngIf="showWebcam" 
 						[allowCameraSwitch]="allowCameraSwitch"
 						[switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
 						(cameraSwitched)="cameraWasSwitched($event)" 
 						(initError)="handleInitError($event)"></webcam>
+				</div>
+				<div class="ui-g-12 ui-md-4 ui-sm-12">
+					
 					<div class="actionBtn" (click)="triggerSnapshot();" title="{{'Take-Picture' | translate}}">📸 {{'Take-Picture' | translate}}</div>
 					<!-- <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div> -->
 				</div>
@@ -140,9 +141,9 @@
 						{{'Student-Colonia' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.colonia"
+						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.sepomex"
 							(onChange)="loadRegionAndCity($event.value)" placeholder="{{'Select' | translate}}" 
-							optionLabel="response.asentamiento" formControlName="colonia" [showClear]="true">
+							optionLabel="colonia" formControlName="colonia" [showClear]="true">
 						</p-dropdown>
 					</div>
 				</div>

@@ -8,7 +8,10 @@
   </div>
   <div class="p-grid p-nogutter p-justify-center p-align-center" style="height:100%">
     <div class="p-xl-3 p-lg-6 p-md-8 p-sm-10">
-      <p-panel header="{{ 'Sukhavaty ' | translate}}">
+      <p-blockUI [target]="mainPnl" [blocked]="blockedPanel">
+        <i class="fa fa-lock fa-5x" style="position:absolute;top:25%;left:50%"></i>
+      </p-blockUI>
+      <p-panel #mainPnl header="{{ 'Sukhavaty ' | translate}}">
         <div class="p-col-12">
           <p-messages [(value)]="msgs"></p-messages>
         </div>

@@ -1,3 +1,5 @@
+import { Sepomex } from "./sepomex.model";
+
 export class Student {
 	id: number;
 	name: string;
@@ -17,4 +19,5 @@ export class Student {
 	comments?: string;
 	extraComments?: string;
 	photo?: string;
+	sepomex?: Sepomex;
 }

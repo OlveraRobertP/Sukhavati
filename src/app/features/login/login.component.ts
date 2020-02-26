@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   user: User;
 
+  blockedPanel: boolean = false;
+
   constructor(
     private userService: UserDataService,
     private toastService: ToastService,
@@ -45,9 +47,11 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin() {
+    this.blockedPanel = true;
     this.userService.getUserByUserNameAndPassword(this.userName, this.password)
       .subscribe((data) => {
         this.user = data;
+        this.blockedPanel = false;
         if (this.user.id) {
           this.userContextService.setUser(this.user);
           this.routeStateService.add("Dashboard", '/main/dashboard', null, true);

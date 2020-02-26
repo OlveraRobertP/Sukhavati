@@ -25,9 +25,9 @@ export class StudentService {
       return this.httpClient.get<Student[]>(url);
   }
 
-  save(student : Student) : Observable<Student>{
+  save(student : Student) : Observable<any>{
     const url = `${this.urlApi}/svc/student/save/`;
-    return this.httpClient.put<Student>(url,student);
+    return this.httpClient.put<any>(url,student);
   }
 
   getStudentById(studentSelected: number) {
