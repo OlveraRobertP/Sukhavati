@@ -21,7 +21,7 @@ export class StudentDetailComponent implements OnInit {
 
   student: Student;
 
-  coloniasPorCp: any;
+  coloniasPorCp: string;
 
   es: any;
 
@@ -58,50 +58,55 @@ export class StudentDetailComponent implements OnInit {
 
 
 
-  ngOnInit() {
-    let routeState = this.routeStateService.getCurrent();
-    let studentSelected = routeState.data.id;
+    ngOnInit() {
+      let routeState = this.routeStateService.getCurrent();
+      let studentSelected = routeState.data.id;
+  
+      this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {
+        this.student = dataStudent || new Student();
+        this.es = this.calendarService.getCalendarLabels();
+  
+        this.genders = [];
+        this.genders.push({ label: this.translate.instant('Select'), value: '' });
+        this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
+        this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
+  
+        if (this.student.gender == 'M') {
+          this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
+        } else if (this.student.gender == 'F') {
+          this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
+        }
+  
+  
+        this.mainform = this.fb.group({
+          'name': new FormControl('', Validators.required),
+          'lastname': new FormControl('', Validators.required),
+          'birthdate': new FormControl(''),
+          'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
+          'phonenumber': new FormControl(''),
+          'mobilenumber': new FormControl(''),
+          'rfc': new FormControl('',Validators.pattern('^([a-zA-Z]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([a-zA-Z0-9]{3}))?$')),
+          'zipcode': new FormControl(''),
+          'colonia': new FormControl(''),
+          'region': new FormControl(''),
+          'city': new FormControl(''),
+          'address': new FormControl(''),
+          'maritalStatus': new FormControl(''),
+          'comments': new FormControl(''),
+          'extraComments': new FormControl(''),
+          'gender': new FormControl('', Validators.required)
+        });
+        
+        this.loadZipCodeInfo();
 
-    this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {
-      this.student = dataStudent || new Student();
-      this.es = this.calendarService.getCalendarLabels();
 
-      this.genders = [];
-      this.genders.push({ label: this.translate.instant('Select'), value: '' });
-      this.genders.push({ label: this.translate.instant('Male'), value: 'M' });
-      this.genders.push({ label: this.translate.instant('Female'), value: 'F' });
-
-      if (this.student.gender == 'M') {
-        this.genderSelected = { label: this.translate.instant('Male'), value: 'M' }
-      } else if (this.student.gender == 'F') {
-        this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
-      }
-
-
-      this.mainform = this.fb.group({
-        'name': new FormControl('', Validators.required),
-        'lastname': new FormControl('', Validators.required),
-        'birthdate': new FormControl(''),
-        'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
-        'phonenumber': new FormControl(''),
-        'mobilenumber': new FormControl(''),
-        'rfc': new FormControl(''),
-        'zipcode': new FormControl(''),
-        'colonia': new FormControl(''),
-        'region': new FormControl(''),
-        'city': new FormControl(''),
-        'address': new FormControl(''),
-        'maritalStatus': new FormControl(''),
-        'comments': new FormControl(''),
-        'extraComments': new FormControl(''),
-        'gender': new FormControl('', Validators.required)
       });
-      
-    });
-
-  }
+  
+    }
+  
 
   loadZipCodeInfo() {
+    console.log(this.student.zipCode)
     this.sepomexService.getColoniasByCP(this.student.zipCode).subscribe((data) => {
       this.coloniasPorCp = data;
     });
@@ -119,7 +124,6 @@ export class StudentDetailComponent implements OnInit {
   onSubmit() {
     /// save student   
     this.student.gender = this.genderSelected.value;
-    console.log(this.student);
     this.studentService.save(this.student).subscribe(
       data => {
         console.log(data);
@@ -177,4 +181,7 @@ export class StudentDetailComponent implements OnInit {
   public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
+
+
+  
 }

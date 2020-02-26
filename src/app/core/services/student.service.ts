@@ -4,28 +4,18 @@ import { AppSettings } from './app-settings.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { SessionService } from './session.service';
 
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  getStudentById(studentSelected: number) {
-     const url = `${this.urlApi}/svc/student/getById/${studentSelected}/`;
-     return this.httpClient.get<Student>(url);
-  }
-
   private urlApi = AppSettings.urlApi;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private sessionService: SessionService) { }
 
   /**
    * get students list
@@ -37,16 +27,12 @@ export class StudentService {
 
   save(student : Student) : Observable<Student>{
     const url = `${this.urlApi}/svc/student/save/`;
-    let httpHeaders = new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Cache-Control': 'no-cache',
-      'Access-Control-Allow-Origin': '*'
-         });    
-         let options = {
-      headers: httpHeaders
-         };      
-
     return this.httpClient.put<Student>(url,student);
   }
+
+  getStudentById(studentSelected: number) {
+    const url = `${this.urlApi}/svc/student/getById/${studentSelected}/`;
+    return this.httpClient.get<Student>(url);
+ }
 
 }

@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Prime NG
 import { MessageService } from 'primeng/api';
@@ -20,6 +21,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { registerLocaleData } from '@angular/common';
 import localeMx from '@angular/common/locales/es-MX';
+import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,7 +56,12 @@ registerLocaleData(localeMx);
   exports: [TranslateModule],
   providers: [
     MessageService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent

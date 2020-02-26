@@ -10,7 +10,7 @@
 			<div class="ui-g">
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
 					<!-- <img *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" width="200px" height="200px" /> -->
-					<img *ngIf="student.photo != null" [src]="student.photo" width="200px" height="200px" />
+					<img *ngIf="student.photo != null" [src]="student.photo" width="200px" height="200px"  />
 				</div>
 				<div class="ui-g-12 ui-md-4 ui-sm-12">
 					<webcam [height]="50" [width]="50" [trigger]="triggerObservable"
@@ -20,7 +20,7 @@
 						[switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
 						(cameraSwitched)="cameraWasSwitched($event)" 
 						(initError)="handleInitError($event)"></webcam>
-					<div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸 {{'Take-Picture' | translate}}</div>
+					<div class="actionBtn" (click)="triggerSnapshot();" title="{{'Take-Picture' | translate}}">📸 {{'Take-Picture' | translate}}</div>
 					<!-- <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div> -->
 				</div>
 			</div>
@@ -74,6 +74,8 @@
 					</div>
 					<div class="ui-g-8">
 						<input type="text" pInputText [(ngModel)]="student.rfc" formControlName="rfc" maxlength="13">
+						<p-message severity="error" text="{{'RFC-Valid' | translate}}"
+							*ngIf="!mainform.controls['rfc'].valid&&mainform.controls['rfc'].dirty"></p-message>
 					</div>
 				</div>
 
@@ -139,7 +141,7 @@
 					</div>
 					<div class="ui-g-8">
 						<p-dropdown [options]="coloniasPorCp" [(ngModel)]="student.colonia"
-							(onChange)="loadRegionAndCity($event.value)" placeholder="{{'Select' | translate}}"
+							(onChange)="loadRegionAndCity($event.value)" placeholder="{{'Select' | translate}}" 
 							optionLabel="response.asentamiento" formControlName="colonia" [showClear]="true">
 						</p-dropdown>
 					</div>

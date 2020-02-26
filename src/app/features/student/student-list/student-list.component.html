@@ -7,7 +7,8 @@
 			iconPos="right"> </p-button>
         </div>
     </p-header>
-	<p-table #dt [globalFilterFields]="['name','lastName','comments']" [value]="students" [paginator]="true" [rows]="10">
+	<p-table #dt [globalFilterFields]="['name','lastName','birthDate','email','comments']" 
+			[value]="students" [paginator]="true" [rows]="10">
 		<ng-template pTemplate="caption">
 			<div style="text-align: right">
 				<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -17,15 +18,22 @@
 		</ng-template>
 		<ng-template pTemplate="header">
 			<tr>
-				<th style="width: 30%">{{'Student-Name' | translate}}</th>
-				<th style="width: 30%">{{'Student-BirthDate' | translate}}</th>
-				<th style="width: 40%">{{'Student-Comments' | translate}}</th>
+				<th [pSortableColumn]="'name'" style="width: 30%">{{'Student-Name' | translate}}
+					<p-sortIcon [field]="'name'" ></p-sortIcon>
+				</th>
+				<th [pSortableColumn]="'email'" style="width: 20%">{{'Student-Email' | translate}}
+					<p-sortIcon [field]="'email'" ></p-sortIcon></th>
+				<th [pSortableColumn]="'birthDate'" style="width: 20%">{{'Student-BirthDate' | translate}}
+					<p-sortIcon [field]="'birthDate'" ></p-sortIcon></th>
+				<th [pSortableColumn]="'comments'"  style="width: 30%">{{'Student-Comments' | translate}}
+					<p-sortIcon [field]="'comments'" ></p-sortIcon></th>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="body" let-student>
 			<tr>				
 				<td><a (click)="goToStudentDetails(student)">{{student.name + ' ' + student.lastName}}</a></td>
-				<td>{{student.birthDate | date:'dd/MM/yyyy'}}</td>
+				<td >{{student.email}}</td>
+				<td align="center">{{student.birthDate}}</td>
 				<!-- <td>{{student.birthDate | date:'dd/MM/yyyy'}}</td> -->
 				<!-- <td>{{student.gender}}</td> -->
 				<td>{{student.comments}}</td>
