@@ -130,7 +130,7 @@
 						{{'Student-ZipCode' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.zipCode" formControlName="zipcode"
+						<input type="text" pInputText [(ngModel)]="student.sepomex.zipCode" formControlName="zipcode"
 							(change)="loadZipCodeInfo()" maxlength="5" minlength="5">
 					</div>
 				</div>
@@ -154,7 +154,7 @@
 						{{'Student-Region' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" formControlName="region" pInputText [(ngModel)]="student.region"
+						<input type="text" formControlName="region" pInputText [(ngModel)]="student.sepomex.region"
 							disabled="true">
 					</div>
 				</div>
@@ -165,7 +165,7 @@
 						{{'Student-City' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.city" formControlName="city" disabled="true">
+						<input type="text" pInputText [(ngModel)]="student.sepomex.city" formControlName="city" disabled="true">
 					</div>
 				</div>
 

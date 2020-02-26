@@ -11,10 +11,6 @@ export class Student {
 	address?: string;
 	gender?: string;
 	rfc?: string;
-	zipCode?: string;
-	colonia?: string;
-	region?: string;
-	city?: string;
 	maritalStatus?: string;
 	comments?: string;
 	extraComments?: string;

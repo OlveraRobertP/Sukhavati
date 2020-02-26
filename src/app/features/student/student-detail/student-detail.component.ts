@@ -91,6 +91,7 @@ export class StudentDetailComponent implements OnInit {
 
       if(routeState.data == null){
         this.student = new Student();
+        this.student.sepomex = new Sepomex();
       }else{
         let studentSelected = routeState.data.id;
         this.studentService.getStudentById(studentSelected).subscribe((dataStudent) => {         
@@ -102,6 +103,10 @@ export class StudentDetailComponent implements OnInit {
             this.genderSelected = { label: this.translate.instant('Female'), value: 'F' }
           }
 
+          if(this.student.sepomex == null){
+            this.student.sepomex = new Sepomex();
+          }
+
           this.loadZipCodeInfo();
           
         });
@@ -110,14 +115,13 @@ export class StudentDetailComponent implements OnInit {
 
 
   loadZipCodeInfo() {    
-    this.sepomexService.getColoniasByCP(this.student.zipCode).subscribe((data) => {       
+    this.sepomexService.getColoniasByCP(this.student.sepomex.zipCode).subscribe((data) => {       
       this.coloniasPorCp = data;
     });
   }
 
   loadRegionAndCity(data) {    
-    this.student.region = data.region;
-    this.student.city = data.city;
+    this.student.sepomex = data;    
   }
 
   back() {
@@ -126,12 +130,9 @@ export class StudentDetailComponent implements OnInit {
 
   onSubmit() {
     /// save student   
-    this.student.gender = this.genderSelected.value;
-    console.log("this.student");
-    console.log(this.student);
+    this.student.gender = this.genderSelected.value;  
     this.studentService.save(this.student).subscribe(
-      data => {
-        console.log(data)
+      data => {        
         if(data.code == "OK"){
           this.messageService.add({
             severity: 'success', summary: this.translate.instant('Success'),
@@ -145,8 +146,6 @@ export class StudentDetailComponent implements OnInit {
         }        
       }
     );
-   
-
   }
 
 
