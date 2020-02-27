@@ -19,15 +19,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(request.url.indexOf('sukhavaty-services')>0){
-      request = request.clone({
-        setHeaders: {
-          Authorization: `${this.sessionService.getItem("currentUser") == undefined ? '' : this.sessionService.getItem("currentUser").id}`
-          //Authorization: `Bearer ${this.sessionService.getItem("currentUser") == undefined ? '' : this.sessionService.getItem("currentUser").id}`
-          //Authorization: `Bearer 1`
-        }
-      });
-    }
+    request = request.clone({
+      setHeaders: {
+        Authorization: `${this.sessionService.getItem("currentUser") == undefined ? '' : this.sessionService.getItem("currentUser").id}`
+        //Authorization: `Bearer ${this.sessionService.getItem("currentUser") == undefined ? '' : this.sessionService.getItem("currentUser").id}`
+        //Authorization: `Bearer 1`
+      }
+    });
     
     return next.handle(request).pipe(
         catchError((err: HttpErrorResponse) => {

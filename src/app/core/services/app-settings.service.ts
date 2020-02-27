@@ -8,6 +8,8 @@ export class AppSettings {
     public static urlApi = 'https://sukhavaty-services.appspot.com';
     //Desarrollo
     //public static urlApi = 'http://localhost:8080';
+    //public static urlApi = 'http://192.168.0.21:8080';
+    
 
 }
 
