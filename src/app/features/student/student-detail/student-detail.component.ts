@@ -69,7 +69,7 @@ export class StudentDetailComponent implements OnInit {
         'email': new FormControl('', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')),
         'phonenumber': new FormControl(''),
         'mobilenumber': new FormControl(''),
-        'rfc': new FormControl('',Validators.pattern('^([a-zA-Z]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([a-zA-Z0-9]{3}))?$')),
+        'rfc': new FormControl('',[ Validators.required, Validators.pattern('^([a-zA-Z]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([a-zA-Z0-9]{3}))?$')]),
         'zipcode': new FormControl(''),
         'colonia': new FormControl(''),
         'region': new FormControl(''),
@@ -133,17 +133,18 @@ export class StudentDetailComponent implements OnInit {
     this.student.gender = this.genderSelected.value;  
     this.studentService.save(this.student).subscribe(
       data => {        
-        if(data.code == "OK"){
-          this.messageService.add({
-            severity: 'success', summary: this.translate.instant('Success'),
-            detail: this.translate.instant('Success-Save')
-          });
-        }else{
-          this.messageService.add({
-            severity: 'error', summary: this.translate.instant('Error'),
-            detail: data.message
-          });
-        }        
+        this.messageService.add({
+          severity: 'success', summary: this.translate.instant('Success'),
+          detail: this.translate.instant('Success-Save')
+        });      
+        this.student.id = data.id;
+      },
+      error => {
+        this.messageService.add({
+          severity: 'error', 
+          summary: this.translate.instant('Error'),
+          detail: error.error
+        });
       }
     );
   }

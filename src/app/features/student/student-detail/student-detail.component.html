@@ -74,7 +74,9 @@
 						{{'Student-RFC' | translate}}:
 					</div>
 					<div class="ui-g-8">
-						<input type="text" pInputText [(ngModel)]="student.rfc" formControlName="rfc" maxlength="13">
+						<input type="text" pInputText [(ngModel)]="student.rfc"  
+								(ngModelChange)="student.rfc = $event.toUpperCase()"
+									formControlName="rfc" maxlength="13">
 						<p-message severity="error" text="{{'RFC-Valid' | translate}}"
 							*ngIf="!mainform.controls['rfc'].valid&&mainform.controls['rfc'].dirty"></p-message>
 					</div>
